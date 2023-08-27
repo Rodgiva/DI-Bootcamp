@@ -1,0 +1,45 @@
+.highlight {
+    background-color: yellow;
+}
+
+h3 {
+    text-decoration: underline;
+}
+
+.cat-sens{
+    margin-left: 50px;
+}
+
+#media {
+    text-align: center;
+}
+
+.the-cat {
+    display: block;
+    margin: 50px auto;
+    border: 10px solid rgb(255, 119, 0);
+}
+
+.stats {
+    margin: 0 5%;
+}
+
+.stats p {
+    color: red;
+    width: 100%;
+    text-align: center;
+    border: thin solid red;
+}
+
+.stats table {
+    width: 100%;
+}
+
+th, td {
+    border: thin solid black;
+}
+
+td {
+    padding: 20px 0;
+}
+

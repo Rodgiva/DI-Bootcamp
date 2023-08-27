@@ -1,0 +1,79 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+header a{
+    text-decoration: none;
+    padding: 15px;
+}
+
+header a:first-of-type {
+    color: #484848;
+    font-size: 20px;
+    vertical-align: middle;
+}
+
+header a button {
+    background-color: #007CFF;
+    padding: 5px 10px;
+    border-radius: 3px;
+    color: white;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+}
+
+.sea-bg {
+    background-image: url(./sea-waves.jpeg);
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.presentation {
+    margin: auto;
+    text-align: center;
+    padding: 10% 20%;
+    color: white;
+}
+
+form .field {
+    width: 300px;
+    padding: 5px;
+}
+
+form .btn {
+    background-color: #007CFF;
+    padding: 5px 20px;
+    border-radius: 3px;
+    color: white;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 50px;
+}
+
+.card {
+    text-align: center;
+    padding: 20px;
+    width: 300px;
+}
+
+i {
+    color: #007CFF;
+}
+
