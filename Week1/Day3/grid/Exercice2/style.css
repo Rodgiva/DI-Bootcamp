@@ -1,0 +1,56 @@
+body {
+    margin: 0;
+}
+
+.container {
+    display: grid;
+    width: 100vh;
+    height: 100vh;
+    gap: 10px;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    grid-template-rows: 1fr 3fr 2fr 2fr 2fr 1fr;
+    margin: auto;
+    grid-template-areas:
+        "header header header"
+        "hero main main"
+        "sidebar main main"
+        "sidebar content content"
+        "images images posts"
+        "footer footer footer";
+}
+
+.container > * {
+    background-color: blue;
+}
+
+header {
+    grid-area: header;
+}
+
+.hero {
+    grid-area: hero;
+}
+
+.sidebar {
+    grid-area: sidebar;
+}
+
+main {
+    grid-area: main;
+}
+
+.content {
+    grid-area: content;
+}
+
+.images {
+    grid-area: images;
+}
+
+.posts {
+    grid-area: posts;
+}
+
+footer {
+    grid-area: footer
+}

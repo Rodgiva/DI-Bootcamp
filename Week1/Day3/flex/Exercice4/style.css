@@ -1,0 +1,34 @@
+body {
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+}
+
+.elem {
+    height: 100%;
+    margin: auto;
+}
+
+.elem1 {
+    background-color: crimson;
+    width: 80%;
+
+}
+
+.elem2 {
+    background-color: blueviolet;
+    width: 100%;
+
+}
+
+.elem3 {
+    background-color: darkgreen;
+    width: 80%;
+
+
+}

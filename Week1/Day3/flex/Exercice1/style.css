@@ -1,0 +1,33 @@
+body {
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+}
+
+.elem {
+    height: 100px;
+}
+
+.elem1 {
+    width: 100%;
+    background-color: crimson;
+
+}
+
+.elem2 {
+    width: 80%;
+    height: 300px;
+    margin: auto;
+    background-color: blueviolet;
+}
+
+.elem3 {
+    width: 100%;
+    background-color: darkgreen;
+
+}

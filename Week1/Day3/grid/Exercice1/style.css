@@ -1,0 +1,50 @@
+body {
+    margin: 0;
+}
+
+.container {
+    display: grid;
+    width: 100vh;
+    height: 100vh;
+    gap: 20px;
+    grid-template-columns: 1fr 3fr;
+    margin: auto;
+    grid-template-areas:
+        "elem1 elem2"
+        "elem3 elem4"
+        "elem5 elem6"
+        "elem7 elem7";
+}
+
+.elem {
+    background-color: crimson;
+}
+
+.elem1 {
+    grid-area: elem1;
+}
+
+.elem2 {
+    grid-area: elem2;
+    
+}
+.elem3 {
+    grid-area: elem3;
+    
+}
+.elem4 {
+    grid-area: elem4;
+    
+}
+.elem5 {
+    grid-area: elem5;
+    
+}
+.elem6 {
+    grid-area: elem6;
+    
+}
+.elem7 {
+    grid-area: elem7;
+    
+}

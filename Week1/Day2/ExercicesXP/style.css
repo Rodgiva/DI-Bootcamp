@@ -9,6 +9,7 @@ nav {
     position: fixed;
     padding: 20px 0;
     text-align: center;
+    z-index: 1;
 }
 
 nav i {
