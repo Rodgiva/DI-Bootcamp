@@ -1,0 +1,27 @@
+:root {
+    --blue: rgb(110, 175, 255);
+}
+
+.navbar {
+    padding: 0;
+    z-index: 100;
+}
+
+.bg-image {
+    background-image: url('https://mdbootstrap.com/img/Photos/Others/images/76.jpg');
+}
+
+.btn-primary-outline {
+    background-color: transparent;
+    border-color: white;
+}
+
+.bi {
+    font-size: 72px;
+    color: var(--blue);
+}
+
+h3 {
+    color: var(--blue);
+}
+
