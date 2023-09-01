@@ -1,0 +1,515 @@
+:root {
+    --bg-blue: rgb(20, 20, 100);
+}
+
+@font-face {
+    font-family: "LemonMilk";
+    src: url(./assets/fonts/LemonMilk/LEMONMILK-Regular.otf)
+}
+
+body {
+    font-family: LemonMilk;
+    margin: 0;
+    color: rgb(215, 215, 215);
+}
+
+.experience>ul>li {
+    list-style: none;
+}
+
+.presentation {
+    width: 100%;
+    text-align: center;
+    padding-top: 100px;
+    background-image: linear-gradient(rgb(20, 20, 20), rgb(20, 20, 60));
+}
+
+.img {
+    width: 300px;
+    border-radius: 300px;
+    margin: auto;
+    box-shadow: 0 0 50px rgba(255, 255, 255, 0.5);
+}
+
+.name {
+    margin-top: 50px;
+}
+
+h1 {
+    font-size: 72px;
+    margin-bottom: 0;
+    color: white;
+}
+
+.name h3 {
+    font-size: 36px;
+}
+
+
+.aboutme {
+    width: 100%;
+    padding: 100px 0;
+}
+
+.aboutme p {
+    width: 50%;
+    margin: auto;
+    /* margin-bottom: 100px; */
+}
+
+.skills {
+    background-color: var(--bg-blue);
+    border-top: thin solid white;
+    border-bottom: thin solid white;
+}
+
+.languages {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    /* border: thin solid white; */
+}
+
+.languages>div {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    margin-bottom: 10px;
+}
+
+.languages>div>h3 {
+    margin: 0;
+    width: 20%;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    height: auto;
+    border-radius: 50px 0 0 50px;
+    z-index: 1;
+}
+
+/* *** */
+progress {
+    border-radius: 0;
+    border: none;
+    height: 60px;
+    width: 100%;
+    background: rgba(0, 0, 0, 0);
+    background-color: white;
+    border-radius: 0 50px 50px 0;
+}
+
+
+progress::-moz-progress-bar {
+    border-radius: 0 50px 50px 0;
+    box-shadow: 20px 0 50px 0px black;
+}
+
+.title-css {
+    background-color: rgb(236, 138, 0);
+}
+
+.title-js {
+    background-color: rgb(235, 235, 0);
+}
+
+.title-php {
+    background-color: rgb(205, 0, 0);
+}
+
+.title-sql {
+    background-color: rgb(0, 0, 205);
+}
+
+.title-csharp {
+    background-color: rgb(0, 205, 0);
+}
+
+.graph-css::-moz-progress-bar {
+    background-color: rgb(255, 185, 87);
+}
+
+.graph-js::-moz-progress-bar {
+    background-color: rgb(255, 255, 77);
+}
+
+.graph-php::-moz-progress-bar {
+    background-color: rgb(255, 74, 74);
+}
+
+.graph-sql::-moz-progress-bar {
+    background-color: rgb(107, 107, 255);
+}
+
+.graph-csharp::-moz-progress-bar {
+    background-color: rgb(101, 255, 101);
+}
+
+progress::-webkit-progress-bar {
+    background-color: white;
+    border-radius: 0 50px 50px 0;
+}
+
+progress::-webkit-progress-value {
+    border-radius: 0 50px 50px 0;
+    box-shadow: 20px 0 50px 0px black;
+}
+
+.graph-css::-webkit-progress-value {
+    background-color: rgb(255, 185, 87);
+}
+
+.graph-js::-webkit-progress-value {
+    background-color: rgb(255, 255, 77);
+}
+
+.graph-php::-webkit-progress-value {
+    background-color: rgb(255, 74, 74);
+}
+
+.graph-sql::-webkit-progress-value {
+    background-color: rgb(107, 107, 255);
+}
+
+.graph-csharp::-webkit-progress-value {
+    background-color: rgb(101, 255, 101);
+}
+
+.logo {
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 50px auto;
+}
+
+.logo>img {
+    width: 100px;
+    height: 100px;
+    margin: 20px;
+}
+
+.contact {
+    position: fixed;
+    z-index: 10;
+    right: 20px;
+    bottom: 20px;
+    background-color: rgba(200, 200, 200, 0.6);
+    padding: 15px;
+    border-radius: 250px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    transition: background-color .1s linear;
+}
+
+.contact img {
+    width: 50px;
+    opacity: 0.8;
+    transition: background-color .1s linear;
+}
+
+.contact:hover {
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+}
+
+.contact:hover img {
+    opacity: 1;
+}
+
+.experience {
+    background-image: linear-gradient(rgb(20, 20, 60), rgb(20, 20, 20));
+}
+
+h2 {
+    color: white;
+    text-align: center;
+    font-size: 48px;
+    padding: 50px 0 20px 0;
+    width: 50%;
+    margin: auto;
+}
+
+.experience>ul {
+    margin-left: 10%;
+    margin-bottom: 0;
+}
+
+.experience>ul>li::before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    background: var(--bg-blue);
+    border: thick solid white;
+    border-radius: 50%;
+    position: absolute;
+    left: -18px;
+    top: 0px;
+}
+
+.experience>ul>li {
+    padding: 0;
+    padding-bottom: 20px;
+    width: 80%;
+    border-left: thick solid white;
+    position: relative;
+    padding-left: 20px;
+    margin-left: 10px;
+}
+
+.xp {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.triangle {
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-right: 15px solid white;
+    border-bottom: 10px solid transparent;
+    margin-top: 5px;
+}
+
+.xp-content {
+    border: thin solid white;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: var(--bg-blue);
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.xp-content h3 {
+    margin: 0;
+    width: 30%;
+    font-size: 14px;
+    margin-top: 10px;
+    /* width: 300px; */
+}
+
+.xp-content h5 {
+    margin: 0;
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.xp-content h6 {
+    margin: 0;
+    font-size: 18px;
+    margin-bottom: 10px;
+    /* color: white; */
+}
+
+.experience>ul>li:last-child {
+    padding-bottom: 100px;
+}
+
+.experience>ul>li>h3 {
+    color: white;
+    margin-left: 5%;
+    margin: 0;
+}
+
+.xp-details {
+    width: 70%;
+}
+
+.xp-details>ul {
+    margin-left: -20px;
+    margin-bottom: 10px;
+}
+
+.xp-details>ul>li {
+    list-style: disc;
+    font-size: 14px;
+    padding: 2px 0;
+}
+
+.skills-used {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-around; */
+    flex-wrap: wrap;
+}
+
+.badge {
+    color: white;
+    font-size: 12px;
+    padding: 10px 20px;
+    margin: 5px;
+    background-image: linear-gradient(to bottom right, rgba(128, 128, 192, 0.3), rgba(128, 128, 192, 0.7));
+    border-radius: 50px;
+    border: thin solid white;
+}
+
+.links {
+    position: fixed;
+    left: -60px;
+    top: 50%;
+    transform: translate(0, -50%);
+    width: 100px;
+    height: 200px;
+    text-align: center;
+    border-radius: 0 40px 40px 0;
+    box-shadow: 0 0 50px rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, .5);
+    transition: all .1s linear;
+}
+
+.links p {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(0, -50%);
+    color: black;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    letter-spacing: 3px;
+}
+
+.links:hover {
+    box-shadow: 0 0 50px rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 1);
+    left: 0;
+}
+
+.links:hover p {
+    visibility: hidden;
+}
+
+.links:hover div a img {
+    left: -0;
+}
+
+.links div {
+    position: relative;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+.links div a img{
+    position: relative;
+    width: 75px;
+    height: 75px;
+    margin: 5px;
+    left: -50px;
+}
+
+
+
+@media only screen and (max-width: 850px) {
+    .img {
+        width: 200px;
+        border-radius: 200px;
+    }
+
+    .name h1 {
+        font-size: 48px;
+    }
+
+    .name h3 {
+        font-size: 24px;
+    }
+
+    .badge {
+        font-size: 8px;
+        padding: 5px 10px;
+        margin: 5px;
+    }
+
+    .experience > ul{
+        margin-left: 0%;
+    }
+
+    .experience > ul > li{
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .name h1 {
+        font-size: 36px;
+    }
+
+    .name h3 {
+        font-size: 20px;
+    }
+
+    .aboutme p {
+        width: 75%;
+    }
+
+    body>div>h2 {
+        font-size: 36px;
+    }
+
+    .logo>img {
+        width: 50px;
+        height: 50px;
+        margin: 10px;
+    }
+
+    .experience > ul{
+        margin-left: -5%;
+    }
+
+    .xp-details > h5 {
+        font-size: 16px;
+    }
+
+    .xp-details > h6 {
+        font-size: 12px;
+    }
+
+    .xp-details > ul > li {
+        font-size: 8px;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .name h1 {
+        font-size: 24px;
+    }
+
+    .name h3 {
+        font-size: 16px;
+    }
+
+    body>div>h2 {
+        font-size: 30px;
+    }
+
+    progress {
+        height: 40px;
+    }
+
+    .languages>div>h3 {
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .experience > ul > li{
+        width: 85%;
+    }
+
+    .xp-content > h3 {
+        font-size: 10px;
+    }
+
+    .xp-details > h5 {
+        font-size: 12px;
+    }
+
+    .xp-details > h6 {
+        font-size: 10px;
+    }
+
+    .xp-details > ul > li {
+        font-size: 8px;
+    }
+}
