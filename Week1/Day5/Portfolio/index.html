@@ -12,17 +12,50 @@
     <div class="links">
         <div>
             <p>Network</p>
-            <a href="https://github.com/Rodgiva">
-                <img src="./assets/images/links/github-mark-white.png" alt="">
+            <a href="https://github.com/Rodgiva" target="_blank">
+                <img src="./assets/images/links/github-mark-white.png">
             </a>
-            <a href="https://github.com/Rodgiva">
-                <img src="./assets/images/links/LinkedIn_logo_initials.png" alt="">
+            <a href="https://github.com/Rodgiva" target="_blank">
+                <img src="./assets/images/links/LinkedIn_logo_initials.png">
             </a>
         </div>
     </div>
 
-    <div class="contact">
-        <img src="./assets/images/message.png" alt="">
+    <button class="contact" onclick="openContact()">
+        <img src="./assets/images/message.png">
+    </button>
+
+    <div class="contact-filter">
+        <div class="contact-open-content">
+            <h3>Contact me</h1>
+            <form action="">
+                <div class="row">
+                    <div class="input">
+                        <label for="">Name</label>
+                        <input type="text" placeholder="Your name...">
+                    </div>
+                    <div class="input">
+                        <label for="">Last name</label>
+                        <input type="text" placeholder="Your last name...">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input">
+                        <label for="">Email</label>
+                        <input type="email" placeholder="Your email...">
+                    </div>
+                </div>
+                <div class="row textarea-row">
+                    <div class="input">
+                        <label for="">Message</label>
+                        <textarea placeholder="Your message..."></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <button>Send</button>
+                </div>
+            </form>
+        </div>
     </div>
 
     <div class="presentation">
@@ -39,29 +72,40 @@
             </p>
         </div>
     </div>
-    <div class="skills">
+    <!-- ***** -->
+    <div class="skills ">
         <h2>My Skills</h2>
         <div class="skills-content">
             <div class="languages">
                 <div class="css">
                     <h3 class="title-css">CSS</h3>
-                    <progress class="graph-css" value="80" max="100"></progress> 
+                    <div class="bar">
+                        <div class="bar-value"></div>
+                    </div>
                 </div>
                 <div class="js">
                     <h3 class="title-js">JS</h3>
-                    <progress class="graph-js" value="60" max="100"></progress> 
+                    <div class="bar">
+                        <div class="bar-value"></div>
+                    </div>
                 </div>
                 <div class="php">
                     <h3 class="title-php">PHP</h3>
-                    <progress class="graph-php" value="50" max="100"></progress> 
+                    <div class="bar">
+                        <div class="bar-value"></div>
+                    </div>
                 </div>
                 <div class="sql">
                     <h3 class="title-sql">SQL</h3>
-                    <progress class="graph-sql" value="70" max="100"></progress> 
+                    <div class="bar">
+                        <div class="bar-value"></div>
+                    </div>
                 </div>
                 <div class="csharp">
                     <h3 class="title-csharp">C#</h3>
-                    <progress class="graph-csharp" value="50" max="100"></progress> 
+                    <div class="bar">
+                        <div class="bar-value"></div>
+                    </div>
                 </div>
             </div>
             <div class="logo">
@@ -82,7 +126,7 @@
     <div class="experience">
         <h2>My experiences</h2>
         <ul>
-            <li class="xp">
+            <li class="xp xp1">
                 <div class="triangle"></div>
                 <div class="xp-content">
                     <h3>May – July 2014</h3>
@@ -105,7 +149,7 @@
                     </div>
                 </div>
             </li>
-            <li class="xp">
+            <li class="xp xp2">
                 <div class="triangle "></div>
                 <div class="xp-content">
                     <h3>January – February 2015</h3>
@@ -129,7 +173,7 @@
                     </div>
                 </div>
             </li>
-            <li class="xp">
+            <li class="xp xp3">
                 <div class="triangle "></div>
                 <div class="xp-content">
                     <h3>June 2015 – July 2015</h3>
@@ -157,7 +201,7 @@
                     </div>
                 </div>
             </li>
-            <li class="xp">
+            <li class="xp xp4">
                 <div class="triangle "></div>
                 <div class="xp-content">
                     <h3>September 2016 – February 2018</h3>
@@ -187,7 +231,7 @@
                     </div>
                 </div>
             </li>
-            <li class="xp">
+            <li class="xp  xp5">
                 <div class="triangle "></div>
                 <div class="xp-content">
                     <h3>October 2019 – November 2019</h3>
@@ -216,7 +260,8 @@
             </li>
         </ul>
     </div>
-    <!-- <div class="links"></div> -->
+
+    <script src="./script.js"></script> 
 </body>
 
 </html>
