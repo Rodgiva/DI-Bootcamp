@@ -105,45 +105,54 @@
 
 
 # 🌟 Exercise 1 : Set
+my_fav_numbers = {12, 64, 128}
 
-my_fav_numbers = set()
+my_fav_numbers.add(42)
+my_fav_numbers.add(36)
 
-my_fav_numbers.add(2)
-my_fav_numbers.add(14)
+print(my_fav_numbers)
 
-# print(my_fav_numbers)
+my_fav_numbers.remove(36)
 
-my_fav_numbers.remove(14)
+print(my_fav_numbers)
 
-# print(my_fav_numbers)
-
-friend_fav_numbers = set()
-friend_fav_numbers.add(6)
-friend_fav_numbers.add(5)
-friend_fav_numbers.add(32)
-friend_fav_numbers.add(27)
+friend_fav_numbers = {2, 4, 8, 16, 32}
 
 our_fav_numbers = my_fav_numbers.union(friend_fav_numbers)
 print(our_fav_numbers)
 
+#*******************************************************************************#
+
 # 🌟 Exercise 2: Tuple
 print("It is not possible to add more integers to the tuples because they are immutable")
+
+#*******************************************************************************#
 
 # 🌟 Exercise 3: List
 basket = ["Banana", "Apples", "Oranges", "Blueberries"]
 basket.remove("Banana")
-print(basket)
 basket.remove("Blueberries")
-print(basket)
 basket.append("Apples")
+basket.insert(0, "Apples")
 print(basket)
+
 count = basket.count('Apples')
 print(count)
 basket.clear()
 print(basket)
 
+#*******************************************************************************#
+
 # 🌟 Exercise 4: Floats
 print("An int is a number WITHOUT a digit after the decimal point, unlike float which is a number WITH a digit after the decimal point")
+
+a_list = []
+for i in range(15, 50, 5):
+    a_list.append(i/10)
+
+print(a_list)
+
+#*******************************************************************************#
 
 # 🌟 Exercise 5: For Loop
 for i in range(1, 21):
@@ -156,6 +165,8 @@ for i in range(1, 21):
     if i%2 == 0:
         print(i)
 
+#*******************************************************************************#
+
 #🌟 Exercise 6 : While Loop
 my_name = "Avigdor"
 while True:
@@ -165,11 +176,14 @@ while True:
         break
     print("Good. But it is not my name. Sooo...")
 
+#*******************************************************************************#
+
 #🌟 Exercise 7: Favorite fruits
 your_favorite_fruits = input("What is your favorite fruits? Separate the fruits with a single space.\n")
 list_of_fruits = your_favorite_fruits.split()
 name_of_fruit = input("Give me a name of any fruit\n")
 
+# Here, the index() methods return an error when the index is not found, so I manage this with "try"
 try :
     list_of_fruits.index(name_of_fruit)
     print("You chose one of your favorite fruits! Enjoy!")
@@ -187,6 +201,8 @@ for i in range(len(list_of_fruits)):
 if not check_if_found:
     print("You chose a new fruit. I hope you enjoy")
 
+#*******************************************************************************#
+
 #Exercise 8: Who ordered a pizza ?
 print("Hi and welcome to Greggo Pizza. You can say 'quit' exactly anytime if you want to stop.")
 toppings = []
@@ -201,6 +217,8 @@ price_final = (len(toppings) * 2.5) + 10
 toppings_str = ', '.join(toppings)
 print(f"So, you ordered a pizza with {toppings_str}")
 print(f"It will cost {price_final} dollars")
+
+#*******************************************************************************#
 
 #Exercise 9: Cinemax
 tickets = []
@@ -220,8 +238,7 @@ while True:
         tickets.append("Ticket over 12")
 print(f"The total cost of will be {price} dollars")
 
-#*****************************#
-
+# Teenages
 teenagers = ["Bob", "Mark", "Henry", "John"]
 teenagers_to_remove = []
 print("Please tell me the ages of each person. You can say 'quit' exactly anytime if you want to stop.")
@@ -236,8 +253,11 @@ teenagers = list(set(teenagers) - set(teenagers_to_remove))
 teenagers_list = ', '.join(teenagers)
 print(f"So, {teenagers_list}, you can come in. The others, get out!")
 
+#*******************************************************************************#
+
 #Exercise 10 : Sandwich Orders
 sandwich_orders = ["Tuna sandwich", "Pastrami sandwich", "Avocado sandwich", "Pastrami sandwich", "Egg sandwich", "Chicken sandwich", "Pastrami sandwich"]
+
 #using a while loop
 i = 0
 while i < len(sandwich_orders):
