@@ -123,9 +123,11 @@ print(answer)
 # print(f"There is {len(my_text)} characters is this sentence")
 
 # Exercise 5: Longest word without a specific character
-text = input("Give me your longest sentences without the letter 'A'.\n")
-find_A = text.find('A')
-if find_A == -1:
-    print("You did it! Congratulations!!! I am so proud of you!\n")
-else:
-    print(f"Nope... I found a letter A in the {find_A + 1}th position. Try again.")
+while True:
+    text = input("Give me your longest sentences without the letter 'A'.\n")
+    find_A = text.find('A')
+    if find_A == -1:
+        print("You did it! Congratulations!!! I am so proud of you!\n")
+        break
+    else:
+        print(f"Nope... I found a letter A in the {find_A + 1}th position. Try again.")
