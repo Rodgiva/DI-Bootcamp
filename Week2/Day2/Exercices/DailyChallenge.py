@@ -36,9 +36,12 @@ nb = int(input_user[0])
 length = int(input_user[1])
 list_res = []
 
-for i in range(1,length+1):
-    res = i * nb
-    list_res.append(res)
+# for i in range(1,length+1):
+#     res = i * nb
+#     list_res.append(res)
+
+list_res = [i*nb for i in range(1,length+1)]
+
 print(list_res)
 
 # Challenge 2
