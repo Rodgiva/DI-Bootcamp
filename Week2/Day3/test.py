@@ -1,24 +1,22 @@
-items_purchase = {
-  "Apple": "$4",
-  "Honey": "$3",
-  "Fan": "$14",
-  "Bananas": "$4",
-  "Pan": "$100",
-  "Spoon": "$2"
-}
+def encrypts(msg):
+    encripted_msg = ""
+    for char in msg:
+        shifted_char = chr(ord(char)+3)
+        encripted_msg += shifted_char
+    return encripted_msg
 
-wallet = int(input("How much do you have in your bank account?\n"))
-list_items_affordable = []
+def decrypts(msg):
+    decripted_msg = ""
+    for char in msg:
+        shifted_char = chr(ord(char)-3)
+        decripted_msg += shifted_char
+    return decripted_msg
 
-for key, val in items_purchase.items():
-    items_purchase[key] = int(val[1:])
+user_msg = input("Please write your message\n")
 
-for key, val in items_purchase.items():
-    if val <= wallet:
-        list_items_affordable.append(key)
+choose = input("Do you want to encrypts or decrypts ? If you want to encrypts, write '1'. If you want to decrypts, write '2'\n")
 
-if len(list_items_affordable) == 0:
-    list_items_affordable.append("Nothing")
-
-list_items_affordable.sort()
-print(list_items_affordable)
+if choose == "1":
+    print(encrypts(user_msg))
+elif choose == "2":
+    print(decrypts(user_msg))
