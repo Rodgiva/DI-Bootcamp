@@ -300,12 +300,12 @@ print(a_list)
 # 🌟 Exercise 5: For Loop
 a_list = []
 
-for i in range(1, 22):
+for i in range(1, 20):
     a_list.append(i)
     print(i)
 
 for i in range(1, len(a_list)):
-    if a_list[i] % 2 == 1:
+    if a_list[i] % 2 == 0:
         print(i)
 
 #🌟 Exercise 7: Favorite fruits
