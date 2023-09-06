@@ -178,3 +178,24 @@ if height_cm > 145:
 else: {
     print("You shall not pass!!!")
 }
+    
+
+#*********CORRECTION*********#
+
+# Exercise 1 : Hello World
+txt = "hello world "
+print(txt * 4)
+
+# Exercise 2 : Some Math
+res = (99**3)*8
+print(res)
+
+# 🌟 Exercise 9 : Tall enough to ride a roller coaster
+height_inches = float(input("What is you height? (in inches) \n"))
+height_cm = height_inches * 2,54
+
+if height_cm > 145:
+    print("Oh, excuse me sir. Here your tickets, good ride. :)")
+else: {
+    print("You shall not pass!!!")
+}

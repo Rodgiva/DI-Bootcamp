@@ -273,3 +273,46 @@ while len(sandwich_orders) > 0:
 
 for j in finished_sandwiches:
     print(f"I made your {j}")
+
+#**********CORRECTION**********#
+
+# 🌟 Exercise 3: List
+basket = ["Banana", "Apples", "Oranges", "Blueberries"]
+basket.remove("Banana")
+basket.pop()
+basket.append("Apples")
+basket.insert(0, "Apples")
+print(basket)
+
+count = basket.count('Apples')
+print(count)
+basket.clear()
+print(basket)
+
+# 🌟 Exercise 4: Floats
+a_list = []
+for i in range(1,5):
+    a_list.append(i)
+    a_list.append(i+0.5)
+
+print(a_list)
+
+# 🌟 Exercise 5: For Loop
+a_list = []
+
+for i in range(1, 22):
+    a_list.append(i)
+    print(i)
+
+for i in range(1, len(a_list)):
+    if a_list[i] % 2 == 1:
+        print(i)
+
+#🌟 Exercise 7: Favorite fruits
+your_favorite_fruits = input("What is your favorite fruits? Separate the fruits with a single space.\n").split()
+name_of_fruit = input("Give me a name of any fruit\n")
+
+if name_of_fruit in your_favorite_fruits:
+    print("You chose one of your favorite fruits! Enjoy!")
+elif name_of_fruit not in your_favorite_fruits:
+    print("You chose a new fruit. I hope you enjoy")
