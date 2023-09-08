@@ -210,3 +210,97 @@ for i in range(len(users)):
     if "o" in users[i] or "p" in users[i]:
         disney_users_A_bis2[users[i]] = i
 print(disney_users_A_bis2)
+
+# CORRECTION
+
+# 🌟 Exercise 1 : Convert lists into dictionaries
+keys = ['Ten', 'Twenty', 'Thirty']
+values = [10, 20, 30]
+
+dict_converted = dict(zip(keys, values))
+print(dict_converted)
+
+# 🌟 Exercise 3: Zara
+brand = {
+    "name": "Zara", 
+    "creation_date": "1975", 
+    "creator_name": "Amancio Ortega Gaona", 
+    "type_of_clothes": ["men", "women", "children", "home"], 
+    "international_competitors": ["Gap", "H&M", "Benetton"],
+    "number_stores": 7000, 
+    "major_color": {
+        "France": "blue", 
+        "Spain": "red", 
+        "US": ["pink", "green"]}
+}
+
+brand["number_stores"] = 2
+countries = ""
+for country in brand["major_color"].keys():
+    countries += ", " + country
+
+type_clothes = ""
+for cloth in brand["type_of_clothes"]:
+    type_clothes += ", " +cloth
+
+print(f"Clients of Zara are from{countries}. They also buys cloths for every{type_clothes}")
+
+brand["country_creation"] = "Spain"
+
+if "international_competitors" in brand:
+    brand["international_competitors"].append("Desigual")
+
+del brand["creation_date"]
+
+last_international_competitor = brand["international_competitors"][-1]
+print(last_international_competitor)
+
+US_major_clothes_colors = ' and '.join(brand["major_color"]["US"])
+print(US_major_clothes_colors)
+
+count = len(brand)
+print(f"The amount of key value pairs: {count}")
+
+brand_keys = ""
+for key in brand.keys():
+    brand_keys += key + " "
+print(brand_keys)
+
+more_on_zara = {
+    "creation_date": 1975,
+    "number_stores": 10000
+}
+
+for key, value in more_on_zara.items():
+    brand[key] = value
+print(brand["number_stores"])
+# The value was overwrited
+
+# Exercise 4 : Disney characters
+users = ["Mickey","Minnie","Donald","Ariel","Pluto"]
+keys = [1,2,3,4,5,6]
+
+#1.
+disney_users_A = []
+disney_users_A = [user for user in users]
+print(dict(zip(disney_users_A, keys))) 
+
+#2.
+disney_users_B = []
+disney_users_B = [user for user in users]
+print(dict(zip(keys, disney_users_B))) 
+
+#3.
+disney_users_C = []
+disney_users_C = [user for user in sorted(users)]
+print(dict(zip(disney_users_C, keys))) 
+
+#4.1.
+disney_users_A_bis = []
+disney_users_A_bis = [user for user in users if "i" in user]
+print(dict(zip(disney_users_A_bis, keys)))
+
+#4.2.
+disney_users_A_bis2 = []
+disney_users_A_bis2 = [user for user in users if "o" in user or "p" in user]
+print(dict(zip(disney_users_A_bis2, keys)))

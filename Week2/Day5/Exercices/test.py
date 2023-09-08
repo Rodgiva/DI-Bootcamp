@@ -1,9 +1,6 @@
-string = "Hello, World!"
-index = 4
-new_char = 'a'
+users = ["Mickey","Minnie","Donald","Ariel","Pluto"]
+keys = [1,2,3,4,5,6]
 
-string_list = list(string)
-string_list[index] = new_char
-new_string = "".join(string_list)
-
-print(new_string)
+disney_users_A_bis = []
+disney_users_A_bis = [user for user in users if "i" in user]
+print(dict(zip(disney_users_A_bis, keys)))
