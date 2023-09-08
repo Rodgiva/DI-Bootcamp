@@ -12,10 +12,8 @@
 # Challenge 1 : Sorting
 # I didnt understand well the instructions
 list_names = "Bob,Alex,Zilean,Martin,Marie-Chantal"
-def ordering(names):
-    res = []
-    return
-
+list_names = [name for name in sorted(list_names.split(','))]
+print(list_names)
 
 # Challenge 2 : Longest Word
 # Instructions
