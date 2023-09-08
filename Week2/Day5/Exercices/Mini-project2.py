@@ -38,10 +38,10 @@ import random
 
 wordslist = ['correction', 'childish', 'beach', 'python', 'assertive', 'interference', 'complete', 'share', 'credit card', 'rush', 'south']
 letters_already_guessed = []
-alphabet_ascii_index = [i for i in range(97, 122)]
+alphabet_ascii_index = [i for i in range(97, 123)]
 
 
-def display(word, hp):
+def display(hp):
     head = "   O \n"
     body = head + "   | \n"
     left_arm = head + "  /| \n"
@@ -69,7 +69,6 @@ def check_letters(word, letter, word_hidden):
     for i in range(len(word)):
         if word[i] == letter:
             word_hidden_list = list(word_hidden_res)
-            print(f"{i} {word_hidden_list}")
             word_hidden_list[i] = letter
             word_hidden_res = "".join(word_hidden_list)
 
@@ -81,7 +80,6 @@ def check_letters(word, letter, word_hidden):
 def game():
     print("Hi and welcome to the Hangman Game!")
     word = random.choice(wordslist)
-    # word = "interference"
     word_hidden = ''.join(["_" for i in range(len(word))])
     hp = 6
     while True:
@@ -90,7 +88,7 @@ def game():
         check_letters_res = check_letters(word = word, letter = player_letter, word_hidden = word_hidden)
         hp += check_letters_res[0]
         word_hidden = check_letters_res[1]
-        display(word_hidden, hp)
+        display(hp)
         if hp == 0:
             print(f"Game Over\nThe word was {word}")
             break
