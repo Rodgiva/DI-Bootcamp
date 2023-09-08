@@ -86,7 +86,14 @@ def check_win(player):
     if diagonal1_check == win_condition or diagonal2_check == win_condition:
         winner = player
         return False
-    return True
+    
+    # check par
+    for row in moves:
+        for column in row:
+            if column == " ":
+                return True
+    winner = "par"
+    return False
 
 # the game logic, here we call every functions
 def game():
@@ -104,6 +111,9 @@ def game():
         display_board(moves)
         # we increment the turn for the next turn
         turn += 1
-    print(f"\nGame Over.\nAaaaaaand the winner is....\nThe {winner} player!!!\n\n********************\n*CONGRATULATIONS!!!*\n********************")
+    if winner == "par":
+        print(f"\nGame Over.\nNo winner...")
+    else:
+        print(f"\nGame Over.\nAaaaaaand the winner is....\nThe {winner} player!!!\n\n********************\n*CONGRATULATIONS!!!*\n********************")
 
 game()
