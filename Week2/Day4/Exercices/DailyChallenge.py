@@ -7,5 +7,8 @@ for i in range(3):
     for j in range(len(matrix)):
         dycripted_code += matrix[j][i]
 
-dycripted_code = dycripted_code.replace("7", "").replace("%", "").replace("#", "").replace("^", "").replace("%", "").replace("?", "").replace("$", " ")
+for char in dycripted_code:
+    # if not char.isalpha() and char != " " and char != "!":
+    if not char.isalpha():
+        dycripted_code = dycripted_code.replace(char, "")
 print(dycripted_code)
