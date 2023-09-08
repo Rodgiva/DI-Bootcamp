@@ -26,11 +26,20 @@
 # "  /|\\"
 # "  / \\"
 
+"____ "
+"|/ O "
+"| /|\\"
+"| / \\"
+"|____ "
+
+
 
 import random
 
 wordslist = ['correction', 'childish', 'beach', 'python', 'assertive', 'interference', 'complete', 'share', 'credit card', 'rush', 'south']
 letters_already_guessed = []
+alphabet_ascii_index = [i for i in range(97, 122)]
+
 
 def display(word, hp):
     head = "   O \n"
@@ -42,31 +51,51 @@ def display(word, hp):
     hanged = [right_leg, left_leg, right_arm, left_arm, body, head, ""]
 
     print(hanged[hp])
-    print(word)
 
 def player_input():
-    player_letter = input("Guess a letter\n")
-    if player_letter not in letters_already_guessed:
-        letters_already_guessed.append(player_letter)
-        return player_letter
-    else:
+    player_letter = input("Guess a letter: ")
+    if ord(player_letter) not in alphabet_ascii_index :
+        print("Please type a letter, and not something else")
+        player_input()
+    elif player_letter in letters_already_guessed:
         print("This letter is already guessed, try with another one.")
         player_input()
+    else:
+        letters_already_guessed.append(player_letter)
+        return player_letter
         
-def find_letters(word, discovering_word, letter):
-    for char in word:
-        if char == letter:
-            # ajouter la/les lettres(s) dans discovering word
-        # sinon hp - 1
+def check_letters(word, letter, word_hidden):
+    word_hidden_res = word_hidden
+    for i in range(len(word)):
+        if word[i] == letter:
+            word_hidden_list = list(word_hidden_res)
+            print(f"{i} {word_hidden_list}")
+            word_hidden_list[i] = letter
+            word_hidden_res = "".join(word_hidden_list)
+
+    if word_hidden != word_hidden_res:
+        return[0, word_hidden_res]
+    else:
+        return [-1, word_hidden]
 
 def game():
-    print("Hi and welcome to the hunge.. I mean Hangman Game!")
+    print("Hi and welcome to the Hangman Game!")
     word = random.choice(wordslist)
-    discovering_word = ''.join(["_ " for i in range(len(word))])
+    # word = "interference"
+    word_hidden = ''.join(["_" for i in range(len(word))])
+    hp = 6
     while True:
+        print(word_hidden)
         player_letter = player_input()
-        discovering_word = find_letters(word, discovering_word, player_letter)
-    hp = 0
-    display(word, hp)
+        check_letters_res = check_letters(word = word, letter = player_letter, word_hidden = word_hidden)
+        hp += check_letters_res[0]
+        word_hidden = check_letters_res[1]
+        display(word_hidden, hp)
+        if hp == 0:
+            print(f"Game Over\nThe word was {word}")
+            break
+        elif word_hidden == word:
+            print("Congratulations, you win!")
+            break
 
 game()
