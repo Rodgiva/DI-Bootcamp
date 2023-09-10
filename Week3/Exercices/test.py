@@ -1,38 +1,37 @@
-class Zoo:
-    def __init__(self, zoo_name):
-        self.name = zoo_name
-        self.animals = []
+class Farm:
+    def __init__(self, farm_name):
+        self.name = farm_name
+        self.animals = {}
     
-    def add_animal(self, new_animal):
-        if new_animal not in self.animals:
-            self.animals.append(new_animal)
-        return self
-    
-    def get_animals(self):
-        [print(animal) for animal in self.animals]
+    def add_animal(self, animal_name, animal_nb = 1):
+        if self.animals.get(animal_name) == None:
+            self.animals[animal_name] = animal_nb
+        else:
+            self.animals[animal_name] = self.animals.get(animal_name) + animal_nb
 
-    def sell_animal(self, animal_sold):
-        if animal_sold in self.animals:
-            self.animals.remove(animal_sold)
+    def get_info(self):
+        farm_info = f"{self.name}'s farm\n\n"
+        for k, v in self.animal.items():
+            farm_info += f"{k} : {v}\n"
+        farm_info += "\n    E-I-E-I-0!"
+        return(farm_info)
     
-    # Maybe I hard coded this, I didnt found an easy solution to group the animals by the first letter
-    def sort_animals(self):
-        dict_animals = {}
-        index = 1
-        dict_animals[index] = [self.animals[0]]
-
-        for i in range(0, len(self.animals)-1):
-            if self.animals[i][0] == self.animals[i+1][0]:
-                dict_animals[index].append(self.animals[i])
-            else:
-                index +=1
-                dict_animals[index] = [self.animals[i]]
-        return dict_animals
+    def get_animal_types(self):
+        animal_list = sorted([animal for animal in self.animals])
+        return animal_list
     
-    def get_groups(self):
-        animals_grouped = self.sort_animals()
+    def get_short_info(self):
+        animal_list = self.get_animal_types()
+        animal_types_without_last = ', '.join(animal_list[:-1])
+        animal_type_last = animal_list[-1]
+        animal_types = ' and '.join([animal_types_without_last, animal_type_last])
+        info = f"McDonald’s farm has {animal_types}"
+        return info
 
-a_zoo = Zoo("The zoo")
-a_zoo.add_animal("dog").add_animal("cat").add_animal("giraffe").add_animal("dada")
-a_zoo.get_groups()
-print(a_zoo.sort_animals())
+macdonald = Farm("McDonald")
+macdonald.add_animal('cow',5)
+macdonald.add_animal('sheep')
+macdonald.add_animal('sheep')
+macdonald.add_animal('goat', 12)
+print(macdonald.get_animal_types())
+print(macdonald.get_short_info())
