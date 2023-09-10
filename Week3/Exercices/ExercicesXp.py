@@ -162,6 +162,7 @@ class Zoo:
     
     def get_groups(self):
         animals_grouped = self.sort_animals()
+        
 
 a_zoo = Zoo("The zoo")
 a_zoo.add_animal("dog").add_animal("cat").add_animal("giraffe").add_animal("dada")
