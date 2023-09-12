@@ -65,8 +65,8 @@ for i in range(len(circles)):
     for j in range(i+1, len(circles)):
         if circles[i].radius > circles[j].radius:
             temp = circles[i].radius
-            circles[j].radius = circles[i].radius
-            circles[i].radius = temp
+            circles[i].radius = circles[j].radius
+            circles[j].radius = temp
 
-# for circle in circles:
-#     print(circle.radius)
+for circle in circles:
+    print(circle.radius)
