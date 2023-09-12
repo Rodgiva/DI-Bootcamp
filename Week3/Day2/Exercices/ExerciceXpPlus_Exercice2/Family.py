@@ -16,6 +16,14 @@ class Family:
                 return member["age"] >= 18
         print('nothing found')
     
-    def family_presentation(self):
-        names = ", ".join([member_name["name"] for member_name in self.members])
-        print(f"Welcome to the {self.last_name} family. I present you {names}")
+    # def family_presentation(self):
+    #     names = ", ".join([member_name["name"] for member_name in self.members])
+    #     print(f"Welcome to the {self.last_name} family. I present you {names}")
+    # CORRECTION
+    def presentation(self):
+        sentence = f"The {self.last_name} family contains"
+        for index, member in enumerate(self.members):
+            if index == len(self.members)-1:
+                sentence += f" and {member['name']}"
+            else:
+                sentence += f" {member['name']},"
