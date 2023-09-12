@@ -48,11 +48,11 @@ class Circle:
 
 a_circle = Circle(20)
 print(repr(a_circle))
-a_circle2 = Circle(30)
+a_circle2 = Circle(50)
 print(repr(a_circle + a_circle2))
 print(a_circle > a_circle2)
 print(a_circle < a_circle2)
-a_circle3 = Circle(20)
+a_circle3 = Circle(25)
 print(a_circle == a_circle3)
 print(a_circle2 == a_circle3)
 
@@ -61,6 +61,7 @@ a_circle5 = Circle(10)
 a_circle6 = Circle(35)
 
 circles = [a_circle, a_circle2, a_circle3, a_circle4, a_circle5, a_circle6]
+# I didn'd find a way to use sort() or sorted()
 for i in range(len(circles)):
     for j in range(i+1, len(circles)):
         if circles[i].radius > circles[j].radius:
@@ -68,5 +69,20 @@ for i in range(len(circles)):
             circles[i].radius = circles[j].radius
             circles[j].radius = temp
 
+
+import turtle
+
+t = turtle.Turtle()
+screen = turtle.Screen()
+
+turtle.bgcolor("blue")
+t.shape("turtle")
+t.fillcolor("green")
+t.pensize(2)
 for circle in circles:
-    print(circle.radius)
+    t.penup()
+    t.goto(0, -circle.radius)
+    t.pendown()
+    t.circle(circle.radius)
+
+screen.mainloop()
