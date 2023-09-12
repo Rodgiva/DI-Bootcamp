@@ -47,22 +47,26 @@ class Circle:
         return self.radius == other.radius
 
 a_circle = Circle(20)
+print(repr(a_circle))
 a_circle2 = Circle(30)
+print(repr(a_circle + a_circle2))
+print(a_circle > a_circle2)
+print(a_circle < a_circle2)
 a_circle3 = Circle(20)
+print(a_circle == a_circle3)
+print(a_circle2 == a_circle3)
+
 a_circle4 = Circle(15)
 a_circle5 = Circle(10)
 a_circle6 = Circle(35)
 
 circles = [a_circle, a_circle2, a_circle3, a_circle4, a_circle5, a_circle6]
-for circle in circles:
-    print(circle.radius)
-print("--------------------------------------")
 for i in range(len(circles)):
     for j in range(i+1, len(circles)):
         if circles[i].radius > circles[j].radius:
             temp = circles[i].radius
-            circles[i].radius = circles[j].radius
-            circles[j].radius = temp
+            circles[j].radius = circles[i].radius
+            circles[i].radius = temp
 
-for circle in circles:
-    print(circle.radius)
+# for circle in circles:
+#     print(circle.radius)
