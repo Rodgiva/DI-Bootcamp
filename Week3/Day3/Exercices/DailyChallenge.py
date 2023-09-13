@@ -18,14 +18,14 @@ class Circle:
     # if we insert the radius only, we save the diameter as radius * 2
     # we respectly do the same with diameter
     # if both input, we save the radius and convert the diameter
-    def __init__(self, radius = 10, diameter = 10):
-        if radius != 0 and diameter == 0:
+    def __init__(self, radius = None, diameter = None):
+        if radius != None and diameter == None:
             self.radius = radius
             self.diameter = radius * 2
-        elif radius == 0 and diameter != 0:
+        elif radius == None and diameter != None:
             self.diameter = diameter
             self.radius = diameter/2
-        elif radius != 0 and diameter != 0:
+        elif radius != None and diameter != None:
             self.radius = radius
             self.diameter = radius * 2
     
@@ -68,7 +68,6 @@ for i in range(len(circles)):
             temp = circles[i].radius
             circles[i].radius = circles[j].radius
             circles[j].radius = temp
-
 
 import turtle
 
