@@ -83,6 +83,7 @@ class Text():
 # a_text.unique_words()
 
 import string
+import re
 
 class TextModification(Text):
     def __init__(self, text):
@@ -93,7 +94,29 @@ class TextModification(Text):
         for punc in string.punctuation:
             a_text = a_text.replace(punc, "")
         return(a_text)
+    
+    # I found a list of stop-words here: stop_words.txt
+    # https://github.com/igorbrigadir/stopwords/blob/master/en/terrier.txt
+    # Or here: stop_words2.txt
+    # https://gist.github.com/sebleier/554280
+    # It seems to work
+    def remove_stop_words(self):
+        a_text = self.text
+
+        dir_path = os.path.dirname(os.path.realpath(__file__))
+        with open(dir_path + r"\stop_words.txt", "r") as file:
+            stop_words_list = file.read().splitlines()
+            
+        for stop_word in stop_words_list:
+            a_text = re.sub(fr'\b{stop_word}\b', "", a_text)
+        return a_text
+    
+    # I don't know the difference between the punctuation characters and the special characters
+    def remove_spec_char(self):
+        pass
+        
 
 txt_modif = TextModification.from_file("the_stranger.txt")
-print(txt_modif.text)
-print(txt_modif.remove_punct())
+# print(txt_modif.text)
+# print(txt_modif.remove_punct())
+# print(txt_modif.remove_stop_words())
