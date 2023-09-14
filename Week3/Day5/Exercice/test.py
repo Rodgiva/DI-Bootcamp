@@ -1,2 +1,2 @@
-test = "ab)cd"
-print(test.isalpha())
+suit = ("Hearts", "Diamonds", "Clubs", "Spades")
+print(type(suit))
