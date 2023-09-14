@@ -75,7 +75,6 @@ class Text():
             file_text = file.read()
             return cls(file_text)
 
-
 # Text.freq_word("a")
 # Text.most_common_word()
 # Text.unique_words()
@@ -115,7 +114,6 @@ class TextModification(Text):
     def remove_spec_char(self):
         pass
         
-
 txt_modif = TextModification.from_file("the_stranger.txt")
 # print(txt_modif.text)
 # print(txt_modif.remove_punct())
