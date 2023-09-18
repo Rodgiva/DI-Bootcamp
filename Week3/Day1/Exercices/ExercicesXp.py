@@ -168,3 +168,7 @@ a_zoo = Zoo("The zoo")
 a_zoo.add_animal("dog").add_animal("cat").add_animal("giraffe").add_animal("dada")
 a_zoo.get_groups()
 print(a_zoo.sort_animals())
+
+# CORRECTION
+
+# Exercice 4

@@ -39,3 +39,13 @@ def longest_word(sentence):
 
 sentence = "Wisdom is easily acquired when hiding under the bed with a saucepan on your head."
 print(longest_word(sentence))
+
+# CORRECTION
+# Challenge 2   
+
+def longest_word(sentence):
+    words = sentence.split(" ")
+    return max(words)
+
+sentence = "Wisdom is easily acquired when hiding under the bed with a saucepan on your head."
+print(longest_word(sentence))
