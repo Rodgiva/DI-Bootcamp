@@ -44,11 +44,8 @@ try:
 except Exception as err:
     print(f"Error :{err}")
 
-cursor = connection.cursor()
-
-
 class MenuItem:
-    def __init__(self, name:str, price:int):
+    def __init__(self, name:str, price:int = 0):
         self.item_name = name
         self.item_price = price
     
@@ -57,35 +54,46 @@ class MenuItem:
         insert into Menu_Items (item_name, item_price)
         values ('{self.item_name}', {self.item_price})
         '''
+        cursor = connection.cursor()
         cursor.execute(query)
         connection.commit()
-
-    def delete(self):
+        cursor.close()
+        
+    def delete(self, item_name):
         query = f'''
         delete from Menu_Items
-        where item_name = '{self.item_name}'
-        and item_price = {self.item_price}
+        where item_name = '{item_name}'
         '''
-        cursor.execute(query)
-        connection.commit()
+        try:
+            cursor = connection.cursor()
+            cursor.execute(query)
+            connection.commit()
+            cursor.close()
+        except Exception as err:
+            print(f"Error :{err}")
+            return False
+        else:
+            return True
 
-    def update(self, name = None, price = None):
-        if name == None:
-            name = self.item_name
-        if price == None:
-            price = self.item_price
-
+    def update(self, price):
         query = f'''
         update Menu_Items
         set
-            item_name = '{name}',
+            item_name = '{self.item_name}',
             item_price = {price}
         where item_name = '{self.item_name}'
-        and item_price = {self.item_price}
         
         '''
-        cursor.execute(query)
-        connection.commit()
+        try:
+            cursor = connection.cursor()
+            cursor.execute(query)
+            connection.commit()
+            cursor.close()
+        except Exception as err:
+            print(f"Error :{err}")
+            return False
+        else:
+            return True
 
 class MenuManager:
     @staticmethod
@@ -94,22 +102,25 @@ class MenuManager:
         select * from Menu_Items
         where item_name = '{name}'
         '''
-
+        cursor = connection.cursor()
         cursor.execute(query)
         output = cursor.fetchall()
+        cursor.close()
 
         if len(output) == 0:
             return None
 
         return output
+    
     @staticmethod
     def all_items():
         query = f'''
         select * from Menu_Items
         '''
-
+        cursor = connection.cursor()
         cursor.execute(query)
         output = cursor.fetchall()
+        cursor.close()
 
         if len(output) == 0:
             return None
