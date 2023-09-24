@@ -1,5 +1,4 @@
 from anagram_checker import AnagramChecker
-import string
 
 class UIAnagrams():
     @staticmethod
@@ -13,9 +12,12 @@ class UIAnagrams():
                     break
                 user_in = user_in.strip()
                 if " " in user_in:
-                    raise ValueError("More than one word found")
+                    raise ValueError("More than one word found\n")
                 elif not user_in.isalpha():
-                    raise ValueError("More than one word found")
+                    raise ValueError("Special character found\n")
+            except ValueError as error:
+                print(error)
+                print("\nPlease try again\n")
             except:
                 print("\nPlease try again\n")
             else:

@@ -26,5 +26,5 @@ class AnagramChecker:
             return False
 
 # test = AnagramChecker("words.txt")
-# test.is_valid_word("ggfgfg")
-# print(test.get_anagrams('MEAT'))
+# print(test.is_valid_word("test"))
+# print(test.get_anagrams('test'))
