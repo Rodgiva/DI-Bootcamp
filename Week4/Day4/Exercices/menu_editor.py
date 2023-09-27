@@ -47,7 +47,7 @@ class Menu_editor:
     @staticmethod
     def remove_item_from_menu():
         item_name = input("Which item do you want to delete?\n")
-        a_menu_item = MenuItem(item_name)
+        a_menu_item = MenuItem(item_name)   
         if a_menu_item.delete(item_name):
             print("The deletion is successful !")
         else:
