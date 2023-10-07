@@ -1,138 +1,431 @@
 from random import randint
+import requests
+import pygame
+import math
 
 class Opponent:
-    def __init__(self, st=10, ag=10, sp=10, lvl=1):
-        # strength
-        self.st: int = st
-        # agility
-        self.ag: int = ag
-        # speed
-        self.sp: int = sp
-        # level
-        self.lvl: int = lvl
+    def __init__(self, name = "Bob", strength = 1, speed = 1, agility = 1, lvl = 1) -> None:
+        # stats
+        self.__name : str = name
+        self.__strength : int = strength
+        self.__speed : int = speed
+        self.__agility : int = agility
+        self.__lvl : int = lvl
+        # attributes
+        self.__hp : int = (self.strength * 20) + 100
+        self.__attack : int = (self.strength * 6) + (self.agility * 2)
+        self.__atk_speed : int = (self.agility * 3) + self.speed
+        # position
+        self.position: list= [0,0]
 
-        # health points
-        self.hp = (10*self.st) + (2*self.ag) + (2*self.sp)
-        # accuracy
-        self.acc = (self.st/8) + (self.ag/2) + (self.sp)
-        # dodge
-        self.do = (self.st/8) + (self.ag) + (self.sp/2)
-        # attack
-        self.atk = (4*self.st) + (self.ag/2) + (self.sp/2)
-        # attack speed
-        self.atk_sp = self.ag + self.sp
-
-    # use to calculate and set the hp, accuracy, dodge, attack and attack speed based on the strength, agility and speed
-    def set_attr(self):
-        self.hp = (10*self.st) + (2*self.ag) + (2*self.sp)
-        self.acc = (self.st/8) + (self.ag/2) + (self.sp)
-        self.do = (self.st/8) + (self.ag) + (self.sp/2)
-        self.atk = (4*self.st) + (self.ag/2) + (self.sp/2)
-        self.atk_sp = (2*self.ag) + (2*self.sp)
-
-    def lvlup(self):
-        self.lvl += 1
-        self.set_attr()
-
-class Monster(Opponent):
-    monsters = ["troll", "orc", "goatman", "goblin", "skeleton"]
-    def __init__(self, lvl):
-        self.monster = Monster.monsters[randint(0,len(Monster.monsters)-1)]
-        st: int
-        ag: int
-        sp: int
-        match self.monster:
-            # to improve: use a json file to store this values and use it here
-            case "troll":
-                st = 8
-                ag = 1
-                sp = 1
-            case "orc":
-                st = 5
-                ag = 3
-                sp = 2
-            case "goatman":
-                st = 3
-                ag = 4
-                sp = 4
-            case "goblin":
-                st = 2
-                ag = 3
-                sp = 5
-            case "skeleton":
-                st = 1
-                ag = 5
-                sp = 4
-        super().__init__(st, ag, sp, lvl)
-        self.assignement_stats(st, ag)
+    @property
+    def name(self):
+        return self.__name
     
-    def assignement_stats(self, base_st, base_ag):
-        stats_pts = 10 * (self.lvl - 1)
-        # assignation of st
-        pts_up = randint((base_st * (self.lvl - 1)) - (2 * self.lvl - 1), (base_st * (self.lvl - 1)) + (2 * self.lvl - 1))
-        self.st += pts_up
-        stats_pts -= pts_up
+    @name.setter
+    def name(self, name):
+        self.__name = name
 
-        # assignation of st
-        pts_up = randint((base_ag * (self.lvl - 1)) - (2 * self.lvl - 1), (base_ag * (self.lvl - 1)) + (2 * self.lvl - 1))
-        self.ag +=  pts_up
-        stats_pts -= pts_up
+    @property
+    def strength(self):
+        return self.__strength
+    
+    @strength.setter
+    def strength(self, strength):
+        self.__strength = strength
 
-        # assignation of st
-        self.sp += stats_pts
+    @property
+    def speed(self):
+        return self.__speed
+    
+    @speed.setter
+    def speed(self, speed):
+        self.__speed = speed
+    
+    @property
+    def agility(self):
+        return self.__agility
+    
+    @agility.setter
+    def agility(self, agility):
+        self.__agility = agility
+    
+    @property
+    def lvl(self):
+        return self.__lvl
+    
+    @lvl.setter
+    def lvl(self, lvl):
+        self.__lvl = lvl
 
-        self.set_attr()
+    @property
+    def hp(self):
+        return self.__hp
+    
+    @hp.setter
+    def hp(self, hp):
+        self.__hp = hp
+    
+    @property
+    def attack(self):
+        return self.__attack
+    
+    @attack.setter
+    def attack(self, attack):
+        self.__attack = attack
+    
+    @property
+    def atk_speed(self):
+        return self.__atk_speed
+    
+    @atk_speed.setter
+    def atk_speed(self, atk_speed):
+        self.__atk_speed = atk_speed
+    
+    def set_stats(self, strength = 0, speed = 0, agility = 0):
+        self.strength += strength
+        self.speed += speed
+        self.agility += agility
+        self._set_attributes()
+    
+    def _set_attributes(self):
+        self.hp = (self.strength * 20) + 100
+        self.attack = (self.strength * 10) + (self.agility * 2)
+        self.atk_speed = (self.agility * 3) + self.speed
+    
+    def __str__(self) -> str:
+        return f"\nname: {self.name}\nstrength: {self.strength}\nspeed: {self.speed}\nagility: {self.agility}\n\nlvl: {self.lvl}\nhp: {self.hp}\nattack: {self.attack}\nattack speed: {self.atk_speed}\n"
 
 class Player(Opponent):
-    def __init__(self, name, st, ag, sp):
-        super().__init__(st, ag, sp)
-        self.name = name
-
-class Game:
-    @staticmethod
-    def intro():
-        print("\nHey! You! You're finnaly awake! You tried to escape the empire, right?\nBut they ended up capturing you. There is still a way for you to get out of this.\nTo earn your release, you will have to face 10 monsters. If you succeed, not only will you be alive, but you will have a place in the hall of fame!")
-        name = input("Well, before we begin, tell me what is your name?\n")
-        attr_pts = 10
-
-        while True:
-            print(f"You have {attr_pts} attributes points left.")
-            attr_st = int(input("How strong are you?\n"))
-            if not (attr_st > attr_pts):
-                attr_pts -= attr_st
-                break
-            else:
-                print("You cannot use more attribute points than you have.")
-
-        while True:
-            print(f"You have {attr_pts} attributes points left.")
-            attr_ag = int(input("And what about you agility?\n"))
-            if not (attr_ag > attr_pts):
-                attr_pts -= attr_ag
-                break
-            else:
-                print("You cannot use more attribute points than you have.")
-
-        while True:
-            print(f"You have {attr_pts} attributes points left.")
-            attr_sp = int(input("And how fast are you?\n"))
-            if not (attr_sp > attr_pts):
-                attr_pts -= attr_sp
-                break
-            else: 
-                print("You cannot use more attribute points than you have.")
-
-        return [name, attr_st, attr_ag, attr_sp]
+    def __init__(self, name="Bob", strength=1, speed=1, agility=1, position=[0, 0]) -> None:
+        super().__init__(name, strength, speed, agility)
+        self.position = position
     
-# attrs = Game.intro()
-# player = Player(name=attrs[0], st=attrs[1], ag=attrs[2], sp=attrs[3])
-# print(player.name)
-# print(f"lvl {player.lvl}")
-# print(f"{player.st} / {player.ag} / {player.sp}")
-# print(f"hp {player.hp}\nacc {player.acc}\ndodge {player.do}\nattack {player.atk}\nattack speed {player.atk_sp}")
+    # implementation of a singleton
+    def __new__(cls, name="Bob", strength=1, speed=1, agility=1, position=[100,100]):
+        if not hasattr(cls, 'instance'):
+            cls.instance = super(Player, cls).__new__(cls)
+        return cls.instance
+    
+    def lvlup(self, strength=0, speed=0, agility=0):
+        self.lvl += 1
+        self.set_stats(strength, speed, agility)
 
-test = Monster(1)
-# print(test.monster)
-print(f"lvl {test.lvl}")
-print(f"{test.st} / {test.ag} / {test.sp}")
-print(f"hp {test.hp}\nacc {test.acc}\ndodge {test.do}\nattack {test.atk}\nattack speed {test.atk_sp}")
+class Monster_generator:
+    monsters = ["troll", "orc", "goatmen", "goblin", "skeleton"]
+
+    @staticmethod
+    def generate_monster(lvl):
+        monster = Monster_generator.monsters[randint(0,len(Monster_generator.monsters)-1)]
+        # match monster:
+        match monster:
+            case "troll":
+                return Troll(lvl=lvl)
+            case "orc":
+                return Orc(lvl=lvl)
+            case "goatmen":
+                return Goatmen(lvl=lvl)
+            case "goblin":
+                return Goblin(lvl=lvl)
+            case "skeleton":
+                return Skeleton(lvl=lvl)
+    
+    @staticmethod
+    def get_monster_name(type_monster):
+        url = "http://monsternames-api.com/api/v1.0/" + type_monster
+        try:
+            res = requests.get(url)
+            return res.json()["fullName"]
+        except Exception as err:
+            print(err)
+            return "Bob Razowski"
+    
+# à faire: possibilité de factoriser le code: créer une classe Monster (non static)
+#   -> remplacer la classe monster actuelle par la nouvelle
+#   -> renommer l'actuelle par Monster_generator
+# éléments redondants: assign_stats(), déclaration du type dans init
+# concernant les mouvements des monsters: ajouter une acceleration comme au player
+
+class Monster(Opponent):
+    def __init__(self, name="Bob Razowski", base_strength = 0, base_agility = 0, base_speed = 0, type = "monster") -> None:
+        self.__base_strength = base_strength
+        self.__base_agility = base_agility
+        self.__base_speed = base_speed
+        super().__init__(name, self.__base_strength, self.__base_speed, self.__base_agility)
+
+class Troll(Monster):
+    def __init__(self, name="Bob Razowski", lvl=1) -> None:
+        self.__base_strength = 4
+        self.__base_agility = 1
+        self.__base_speed = 1
+        self.type = "Troll"
+
+        super().__init__(name, self.__base_strength, self.__base_speed, self.__base_agility, lvl)
+        self.name = Monster_generator.get_monster_name("troll")
+        self.assign_stats()
+
+    def assign_stats(self):
+        # 2/3 chance to set strength
+        # 1/6 chance to set agilily
+        # 1/6 chance to set speed
+        for _ in range(self.lvl):
+            rand = randint(1,6)
+            if rand > 2:
+                self.strength += 1
+            elif rand == 1:
+                self.agility += 1
+            elif rand == 2:
+                self.speed += 1
+            self._set_attributes()
+    
+    def move(self, player:Player):
+        a = player.position[0] - self.position[0]
+        b = player.position[1] - self.position[1]
+
+        distance = math.sqrt(a**2 + b**2)
+        
+        if a == 0 or b == 0 or distance <= 20:
+            return [0,0]
+
+        angle = math.atan(a/b)
+        direction_x = math.cos(angle)*self.speed
+        direction_y = math.sin(angle)*self.speed
+        if b < 0:
+            direction_x = -direction_x
+            direction_y = -direction_y
+
+        direction = [direction_y, direction_x]
+        return direction
+    
+    def attack_check(self, player:Player):
+        a = player.position[0] - self.position[0]
+        b = player.position[1] - self.position[1]
+
+        distance = math.sqrt(a**2 + b**2)
+        if distance < 35:
+            return True
+        return False
+
+class Orc(Monster):    
+    def __init__(self, name="Bob Razowski", lvl=1) -> None:
+        self.__base_strength = 3
+        self.__base_agility = 1
+        self.__base_speed = 2
+        self.type = "Orc"
+
+        super().__init__(name, self.__base_strength, self.__base_speed, self.__base_agility, lvl)
+        self.name = Monster_generator.get_monster_name("orc")
+        self.assign_stats()
+
+    def assign_stats(self):
+        # 1/2 chance to set strength
+        # 1/6 chance to set agilily
+        # 1/3 chance to set speed
+        for _ in range(self.lvl):
+            rand = randint(1,6)
+            if rand > 3:
+                self.strength += 1
+            elif rand == 1:
+                self.agility += 1
+            elif rand > 1:
+                self.speed += 1
+            self._set_attributes()
+
+    def move(self, player:Player):
+        a = player.position[0] - self.position[0]
+        b = player.position[1] - self.position[1]
+
+        distance = math.sqrt(a**2 + b**2)
+        
+        if a == 0 or b == 0 or (distance >= 35 and distance <= 40):
+            return [0,0]
+
+        angle = math.atan(a/b)
+        direction_x = math.cos(angle)*self.speed
+        direction_y = math.sin(angle)*self.speed
+        if b < 0:
+            direction_x = -direction_x
+            direction_y = -direction_y
+
+        if distance < 35:
+            direction = [-direction_y, -direction_x]
+        else:
+            direction = [direction_y, direction_x]
+        return direction
+        
+    def attack_check(self, player:Player):
+        a = player.position[0] - self.position[0]
+        b = player.position[1] - self.position[1]
+
+        distance = math.sqrt(a**2 + b**2)
+        if distance < 35:
+            return True
+        return False
+
+class Goatmen(Monster):
+    def __init__(self, name="Bob Razowski", lvl=1) -> None:
+        self.__base_strength = 2
+        self.__base_agility = 2
+        self.__base_speed = 2
+        self.type = "Goatmen"
+
+        super().__init__(name, self.__base_strength, self.__base_speed, self.__base_agility, lvl)
+        self.name = Monster_generator.get_monster_name("goatmen")
+        self.assign_stats()
+
+    def assign_stats(self):
+        # 1/3 chance to set strength
+        # 1/3 chance to set agilily
+        # 1/3 chance to set speed
+        for _ in range(self.lvl):
+            rand = randint(1,6)
+            if rand >= 5:
+                self.strength += 1
+            elif rand >= 3:
+                self.agility += 1
+            elif rand >= 1:
+                self.speed += 1
+            self._set_attributes()
+
+    def move(self, player:Player):
+        a = player.position[0] - self.position[0]
+        b = player.position[1] - self.position[1]
+
+        distance = math.sqrt(a**2 + b**2)
+        
+        if a == 0 or b == 0 or (distance >= 75 and distance <= 80):
+            return [0,0]
+
+        angle = math.atan(a/b)
+        direction_x = math.cos(angle)*self.speed
+        direction_y = math.sin(angle)*self.speed
+        if b < 0:
+            direction_x = -direction_x
+            direction_y = -direction_y
+
+        if distance < 35:
+            direction = [-direction_y, -direction_x]
+        else:
+            direction = [direction_y, direction_x]
+        return direction
+
+    def attack_check(self, player:Player):
+        a = player.position[0] - self.position[0]
+        b = player.position[1] - self.position[1]
+
+        distance = math.sqrt(a**2 + b**2)
+        if distance < 35:
+            return True
+        return False
+
+class Goblin(Monster):
+    def __init__(self, name="Bob Razowski", lvl=1) -> None:
+        self.__base_strength = 1
+        self.__base_agility = 3
+        self.__base_speed = 2
+        self.type = "Goblin"
+
+        super().__init__(name, self.__base_strength, self.__base_speed, self.__base_agility, lvl)
+        self.name = Monster_generator.get_monster_name("goblin")
+        self.assign_stats()
+
+    def assign_stats(self):
+        # 1/6 chance to set strength
+        # 1/2 chance to set agilily
+        # 1/3 chance to set speed
+        for _ in range(self.lvl):
+            rand = randint(1,6)
+            if rand == 1:
+                self.strength += 1
+            elif rand <= 4:
+                self.agility += 1
+            elif rand > 4:
+                self.speed += 1
+            self._set_attributes()
+
+    def move(self, player:Player):
+        a = player.position[0] - self.position[0]
+        b = player.position[1] - self.position[1]
+
+        distance = math.sqrt(a**2 + b**2)
+        
+        if a == 0 or b == 0 or (distance >= 100 and distance <= 105):
+            return [0,0]
+
+        angle = math.atan(a/b)
+        direction_x = math.cos(angle)*self.speed
+        direction_y = math.sin(angle)*self.speed
+        if b < 0:
+            direction_x = -direction_x
+            direction_y = -direction_y
+
+        if distance < 35:
+            direction = [-direction_y, -direction_x]
+        else:
+            direction = [direction_y, direction_x]
+        return direction
+    
+    def attack_check(self, player:Player):
+        a = player.position[0] - self.position[0]
+        b = player.position[1] - self.position[1]
+
+        distance = math.sqrt(a**2 + b**2)
+        if distance < 35:
+            return True
+        return False
+    
+class Skeleton(Monster):
+    def __init__(self, name="Bob Razowski", lvl=1) -> None:
+        self.__base_strength = 1
+        self.__base_agility = 2
+        self.__base_speed = 3
+        self.type = "Skeleton"
+
+        super().__init__(name, self.__base_strength, self.__base_speed, self.__base_agility, lvl)
+        self.name = Monster_generator.get_monster_name("skeleton")
+        self.assign_stats()
+
+    def assign_stats(self):
+        # 1/6 chance to set strength
+        # 1/3 chance to set agilily
+        # 1/2 chance to set speed
+        for _ in range(self.lvl):
+            rand = randint(1,6)
+            if rand == 1:
+                self.strength += 1
+            elif rand <= 3:
+                self.agility += 1
+            elif rand > 3:
+                self.speed += 1
+            self._set_attributes()
+    
+    def move(self, player:Player):
+        a = player.position[0] - self.position[0]
+        b = player.position[1] - self.position[1]
+
+        distance = math.sqrt(a**2 + b**2)
+        
+        if a == 0 or b == 0 or (distance >= 150 and distance <= 155):
+            return [0,0]
+
+        angle = math.atan(a/b)
+        direction_x = math.cos(angle)*self.speed
+        direction_y = math.sin(angle)*self.speed
+        if b < 0:
+            direction_x = -direction_x
+            direction_y = -direction_y
+
+        if distance < 35:
+            direction = [-direction_y, -direction_x]
+        else:
+            direction = [direction_y, direction_x]
+        return direction
+    
+    def attack_check(self, player:Player):
+        a = player.position[0] - self.position[0]
+        b = player.position[1] - self.position[1]
+
+        distance = math.sqrt(a**2 + b**2)
+        if distance < 35:
+            return True
+        return False
