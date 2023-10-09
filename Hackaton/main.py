@@ -4,7 +4,7 @@ from opponent import Player, Monster_generator
 import sys
 from pygame import math as pymath
 import math
-from datetime import datetime
+from db_helper import CRUD_Player, CRUD_Monster
 
 # à faire: créer 2 classes: Player_game et Monster_game, rassembler dans ses classes la gestion graphique de ces classes (move, attack, hp etc)
 
@@ -20,8 +20,9 @@ class Game:
         self.game_loop = True
         self.player_time_attack = pygame.time.get_ticks()
         self.monster_time_attack = pygame.time.get_ticks()
-        self.actuel_hp_player = self.player.hp
-        self.actuel_hp_monster = None
+        self.actual_hp_player = self.player.hp
+        self.actual_hp_monster = None
+        self.monsters:list = []
 
     def __new__(cls):
         if not hasattr(cls, 'instance'):
@@ -34,10 +35,11 @@ class Game:
         self.__display_text("But there is still a way for you to get out of this.\nTo earn your release, you will have to face\n10 monsters.")
         self.__display_text("If you succeed, not only will you be alive,\nbut you will have a place in the hall of fame !")
         self.__display_text("So tell me, what is your name ?", 2000)
-        self.player.name = self.__prompt()
+        self.player.name = self.__input_text()
         self.__display_text("And what are you good at ?", 2000)
         for i in range(3, 0, -1):
             self.__select_stats_up(i)
+        self.__display_text(f"Strength: {self.player.strength}\nAgility: {self.player.agility}\nSpeed: {self.player.speed}")
     
     def __select_stats_up(self, pts_left = None, lvlup = False):
         font = pygame.font.Font('freesansbold.ttf', 32)
@@ -105,6 +107,7 @@ class Game:
                         self.player.lvlup(agility=1)
                     elif select == 2:
                         self.player.lvlup(speed=1)
+                    self.__display_text(f"Strength: {self.player.strength}\nAgility: {self.player.agility}\nSpeed: {self.player.speed}")
                     return
 
             pygame.display.update()
@@ -130,7 +133,7 @@ class Game:
         pygame.display.update()
         pygame.time.wait(time)
         
-    def __prompt(self):
+    def __input_text(self):
         X = Game.SCREEN_WIDTH
         Y = Game.SCREEN_HEIGHT
         surface = pygame.display.set_mode((X, Y))
@@ -151,7 +154,7 @@ class Game:
                         res_txt = res_txt[:-1]
                     elif e.key == pygame.K_RETURN:
                         loop = False
-                    else:
+                    elif len(res_txt) <= 20:
                         res_txt += e.unicode
             surface.fill((0,0,0))
             
@@ -178,19 +181,22 @@ class Game:
             pygame.mouse.set_visible(False)
 
             self.monster = Monster_generator.generate_monster(self.player.lvl)
-            self.actuel_hp_monster = self.monster.hp
+            self.monsters.append(self.monster)
+            self.actual_hp_monster = self.monster.hp
 
-            self.monster.position = [3 * Game.SCREEN_WIDTH/4, Game.SCREEN_HEIGHT/2]
-            self.__display_text(f"Your opponent is\n{self.monster.name} the {self.monster.type}")
             for _ in range(9):
+                self.monster.position = [3 * Game.SCREEN_WIDTH/4, Game.SCREEN_HEIGHT/2]
+                self.__display_text(f"Your opponent is\n{self.monster.name} the {self.monster.type}")
                 if self.__lvl_game():
                     self.__select_stats_up(1, lvlup = True)
                     self.player.lvlup()
                     self.monster = Monster_generator.generate_monster(self.player.lvl)
-                    self.actuel_hp_monster = self.monster.hp
+                    self.actual_hp_monster = self.monster.hp
                 else:
                     self.__display_text("Game Over")
                     pygame.quit()
+            self.__display_text("Congratulations !\nYou are now free,\nand have earned your place in the hall of fame!")
+            # self.__save_hall_of_fame()
 
         pygame.quit()
 
@@ -201,8 +207,11 @@ class Game:
         run = True
         pygame.mouse.set_visible(False)
 
-        player_hp_max = self.actuel_hp_player
-        monster_hp_max = self.actuel_hp_monster
+        self.actual_hp_player = self.player.hp
+        self.actual_hp_monster = self.monster.hp
+
+        player_hp_max = self.actual_hp_player
+        monster_hp_max = self.actual_hp_monster
 
         while run:
             self.clock.tick(60)
@@ -214,8 +223,8 @@ class Game:
             self.__move_player(player_pos)
             self.__move_monster(monster_pos)
 
-            self.__healthbar(player_hp_max, self.player)
-            self.__healthbar(monster_hp_max, self.monster)
+            self.__healthbar(player_hp_max, self.player.position, self.actual_hp_player)
+            self.__healthbar(monster_hp_max, self.monster.position, self.actual_hp_monster)
 
             self.__display_triangle(self.player.position)
 
@@ -225,7 +234,7 @@ class Game:
                     self.__attack(self.player, self.monster)
             
             if pygame.time.get_ticks() - self.monster_time_attack >= 2000 - (self.monster.atk_speed * 50):
-                if self.monster.attack_check(self.monster):
+                if self.monster.attack_check(self.player):
                     self.monster_time_attack = pygame.time.get_ticks()
                     self.__attack(self.monster, self.player)
 
@@ -241,10 +250,10 @@ class Game:
             
             pygame.display.update()
 
-            if self.actuel_hp_monster <= 0:
+            if self.actual_hp_monster <= 0:
                 run = False
                 return True
-            elif self.actuel_hp_player <= 0:
+            elif self.actual_hp_player <= 0:
                 run = False
                 return False
 
@@ -266,10 +275,10 @@ class Game:
         triangle_points = [(vCenter + p*scale + vDistance) for p in rotated_point]
         pygame.draw.polygon(self.screen, (0,0,255), triangle_points)
 
+    # make a delay before attacking for monsters
     def __attack(self, opponent1, opponent2):
         position = (opponent1.position[0] - 15, opponent1.position[1] - 15)
         if type(opponent1) == Player:
-            # if pygame.mouse.get_pressed()[0]:
             mouse_pos = pygame.mouse.get_pos()
             vMouse = pymath.Vector2(mouse_pos)
             vCenter = pymath.Vector2(position)
@@ -295,11 +304,11 @@ class Game:
 
     def __damage_dealing(self, opponent):
         if type(opponent) == Player:
-            self.actuel_hp_monster -= self.player.attack
+            self.actual_hp_monster -= self.player.attack
         # pareil ici, à modifier 
         # if type(opponent) == Monster: (remplacer "else" par cette ligne lorsque la classe mère des monstres sera créée)
         else:
-            self.actuel_hp_player -= self.monster.attack
+            self.actual_hp_player -= self.monster.attack
     
     def __display_attack(self, position, angle):
         distance = pygame.math.Vector2(math.cos(math.radians(angle)) * 20, math.sin(math.radians(angle)) * 20)
@@ -388,21 +397,25 @@ class Game:
     
     def __move_monster(self, monster_vector):
         monster_vector = self.monster.move(self.player)
-        # monster_vector = (0, 0)
 
         if not (self.monster.position[0] <= 10 and monster_vector[0] < 0) and not (self.monster.position[0] >= Game.SCREEN_WIDTH - 10 and monster_vector[0] > 0):
             self.monster.position[0] += monster_vector[0]
         if not (self.monster.position[1] <= 10 and monster_vector[1] < 0) and not (self.monster.position[1] >= Game.SCREEN_HEIGHT - 10 and monster_vector[1] > 0):
             self.monster.position[1] += monster_vector[1]
-        pygame.draw.circle(self.screen, (255, 0, 0), self.monster.position, 10, 0)
+        pygame.draw.circle(self.screen, self.monster.color, self.monster.position, 10, 0)
     
-    def __healthbar(self, hp, opponent):
-        pos_x = opponent.position[0] - 25
-        pos_y = opponent.position[1] - 25
-        ratio = opponent.hp / hp
+    def __healthbar(self, hp, position, actual_hp):
+        pos_x = position[0] - 25
+        pos_y = position[1] - 25
+        ratio = actual_hp / hp
 
         pygame.draw.rect(self.screen, "red", (pos_x, pos_y, 50, 5))
         pygame.draw.rect(self.screen, "green", (pos_x, pos_y, 50 * ratio, 5))
+    
+    def __save_hall_of_fame(self):
+        CRUD_Player(self.player.name, self.player.strength, self.player.agility, self.player.speed).save()
+        print(CRUD_Player.player_id)
+        for monster in self.monsters:
+            CRUD_Monster(monster.name, monster.strength, monster.agility, monster.speed, CRUD_Player.player_id).save()
 
-game = Game()
-game.launch()
+Game().launch()

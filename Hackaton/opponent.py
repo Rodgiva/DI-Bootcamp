@@ -159,6 +159,7 @@ class Troll(Monster):
         self.__base_agility = 1
         self.__base_speed = 1
         self.type = "Troll"
+        self.color = (63, 63, 63)
 
         super().__init__(name, self.__base_strength, self.__base_speed, self.__base_agility, lvl)
         self.name = Monster_generator.get_monster_name("troll")
@@ -212,6 +213,7 @@ class Orc(Monster):
         self.__base_agility = 1
         self.__base_speed = 2
         self.type = "Orc"
+        self.color = (0, 63, 0)
 
         super().__init__(name, self.__base_strength, self.__base_speed, self.__base_agility, lvl)
         self.name = Monster_generator.get_monster_name("orc")
@@ -268,6 +270,7 @@ class Goatmen(Monster):
         self.__base_agility = 2
         self.__base_speed = 2
         self.type = "Goatmen"
+        self.color = (95, 63, 0)
 
         super().__init__(name, self.__base_strength, self.__base_speed, self.__base_agility, lvl)
         self.name = Monster_generator.get_monster_name("goatmen")
@@ -324,6 +327,7 @@ class Goblin(Monster):
         self.__base_agility = 3
         self.__base_speed = 2
         self.type = "Goblin"
+        self.color = (0, 191, 0)
 
         super().__init__(name, self.__base_strength, self.__base_speed, self.__base_agility, lvl)
         self.name = Monster_generator.get_monster_name("goblin")
@@ -380,6 +384,7 @@ class Skeleton(Monster):
         self.__base_agility = 2
         self.__base_speed = 3
         self.type = "Skeleton"
+        self.color = (127, 127, 127)
 
         super().__init__(name, self.__base_strength, self.__base_speed, self.__base_agility, lvl)
         self.name = Monster_generator.get_monster_name("skeleton")
