@@ -6,7 +6,7 @@ from pygame import math as pymath
 import math
 from db_helper import CRUD_Player, CRUD_Monster
 
-# à faire: créer 2 classes: Player_game et Monster_game, rassembler dans ses classes la gestion graphique de ces classes (move, attack, hp etc)
+# à faire: créer 2 classes: Player_game et Monster_game, rassembler dans ses classes la gestion graphique de ces classes (move, attack, hp etc) pour eviter la redondance
 
 class Game:
     SCREEN_WIDTH = 800

@@ -1,6 +1,5 @@
 from random import randint
 import requests
-import pygame
 import math
 
 class Opponent:
