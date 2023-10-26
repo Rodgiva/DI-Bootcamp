@@ -3,6 +3,11 @@
     src: url("./assets/fonts/SEGA.TTF");
 }
 
+@font-face {
+    font-family: coolvetica;
+    src: url("./assets/fonts/coolvetica.otf");
+}
+
 body {
     margin: 0;
 }
@@ -36,6 +41,8 @@ main {
     justify-content: center;
     width: 80%;
     margin: auto;
+    font-family: coolvetica;
+    color: rgb(60, 60, 60);
 }
 
 .card {
@@ -53,4 +60,8 @@ main {
 .card img {
     border-radius: 50%;
     background-color: #303952;
+}
+
+.card .details {
+    margin: 20px;
 }

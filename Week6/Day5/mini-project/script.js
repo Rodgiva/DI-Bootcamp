@@ -100,13 +100,14 @@ const robotsDisplay = (robots) => {
     const card = document.createElement("div");
     const img = document.createElement("img");
     const details = document.createElement("div");
-    const title = document.createElement("h3");
+    const title = document.createElement("h2");
     const mail = document.createElement("p");
 
     img.src = item.image;
     title.textContent = item.name;
     mail.textContent = item.email;
     card.classList.add("card");
+    details.classList.add("details")
     
     details.appendChild(title)
     details.appendChild(mail);
