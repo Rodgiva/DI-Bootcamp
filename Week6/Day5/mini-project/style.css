@@ -1,0 +1,56 @@
+@font-face {
+    font-family: segaFont;
+    src: url("./assets/fonts/SEGA.TTF");
+}
+
+body {
+    margin: 0;
+}
+
+header {
+    background-color: #6ADF82;
+    display: flex;
+    padding: 25px;
+}
+
+header h1 {
+    margin: 0;
+    font-family: segaFont;
+    font-weight: lighter;
+}
+
+main {
+    background-image: url("./assets/images/circuit-pattern.png");
+    background-color: #6556CD;
+    padding: 80px 0;
+}
+
+#robotInput {
+    margin-left: 40px;
+    width: 50%;
+}
+
+#container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 80%;
+    margin: auto;
+}
+
+.card {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+
+    background-image: url("./assets/images/card-pattern.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    background-color: #4FC1C5;
+}
+
+.card img {
+    border-radius: 50%;
+    background-color: #303952;
+}
