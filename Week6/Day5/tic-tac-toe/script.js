@@ -6,6 +6,4 @@
 
         containerElem.appendChild(cell)
     }
-
-    
 })()

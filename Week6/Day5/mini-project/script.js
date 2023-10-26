@@ -124,7 +124,7 @@ const popup = (msg) => {
   msgElem.classList.add("msgPopup");
 
   document.body.style.overflow = "hidden";
-  msgElem.textContent = msg
+  msgElem.textContent = msg;
   inputElem.blur();
 
   document.body.prepend(divFilter);
@@ -132,6 +132,8 @@ const popup = (msg) => {
   divPopup.appendChild(msgElem);
 
   divFilter.addEventListener("click", () => {
+    inputElem.focus();
+    document.body.style.overflow = "scroll";
     inputElem.value = "";
     robotsDisplay(robotFilter(inputElem.value));
     divFilter.remove();
@@ -140,5 +142,8 @@ const popup = (msg) => {
 
 inputElem.addEventListener("input", () => {
   robotsDisplay(robotFilter(inputElem.value));
-  robotFilter(inputElem.value).length == 0 && popup("No robots found... (◡︵◡)");
+  robotFilter(inputElem.value).length == 0 &&
+    popup("No robots found... (◡︵◡)");
 });
+
+// after having created the popup, it may not be the best way to use a popup
