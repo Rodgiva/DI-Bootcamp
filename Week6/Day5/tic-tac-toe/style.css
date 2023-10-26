@@ -1,0 +1,13 @@
+#container {
+    display: grid;
+    position: relative;
+    grid-template-rows: 150px 150px 150px;
+    grid-template-columns: 150px 150px 150px;
+    justify-content: center;
+    align-content: center;
+    /* transition: z-index 1s ease, height 1s ease; */
+}
+
+.cell {
+    border: thin solid black;
+}

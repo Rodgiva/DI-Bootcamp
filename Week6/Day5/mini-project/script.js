@@ -1,23 +1,6 @@
-// const DOMELEMENTS = {
-//   get: {
-//     container: document.getElementById("container"),
-//   },
-//   create: {
-//     image: document.createElement("img"),
-//     div: document.createElement("div"),
-//     image: document.createElement("img"),
-//     h3: document.createElement("h3"),
-//     p: document.createElement("p"),
-//   },
-// };
-
-// const imageElem = document.createElement("img")
-// const divElem = document.createElement("div")
-// const h3Elem = document.createElement("h3")
-// const pElem = document.createElement("p")
-
 const containerElem = document.getElementById("container");
 const inputElem = document.getElementById("robotInput");
+const cardElems = document.getElementsByClassName("card");
 
 const robots = [
   {
@@ -95,7 +78,7 @@ const robots = [
 let robotsToDisplay = robots;
 
 const robotsDisplay = (robots) => {
-    containerElem.innerHTML = ""
+  containerElem.innerHTML = "";
   robots.forEach((item) => {
     const card = document.createElement("div");
     const img = document.createElement("img");
@@ -107,9 +90,9 @@ const robotsDisplay = (robots) => {
     title.textContent = item.name;
     mail.textContent = item.email;
     card.classList.add("card");
-    details.classList.add("details")
-    
-    details.appendChild(title)
+    details.classList.add("details");
+
+    details.appendChild(title);
     details.appendChild(mail);
     card.appendChild(img);
     card.appendChild(details);
@@ -122,11 +105,40 @@ robotsDisplay(robotsToDisplay);
 
 const robotFilter = (x) => {
   let search = x.toLowerCase();
-  let robotsName = robotsToDisplay.map((val) => val.name.toLowerCase()).filter((val) => val.startsWith(search));
+  let robotsName = robotsToDisplay
+    .map((val) => val.name.toLowerCase())
+    .filter((val) => val.startsWith(search));
 
-  return robotsToDisplay.filter((val) => robotsName.includes(val.name.toLowerCase()));;
+  return robotsToDisplay.filter((val) =>
+    robotsName.includes(val.name.toLowerCase())
+  );
+};
+
+const popup = (msg) => {
+  const divFilter = document.createElement("div");
+  const divPopup = document.createElement("div");
+  const msgElem = document.createElement("p");
+
+  divFilter.classList.add("filterBg");
+  divPopup.classList.add("popup");
+  msgElem.classList.add("msgPopup");
+
+  document.body.style.overflow = "hidden";
+  msgElem.textContent = msg
+  inputElem.blur();
+
+  document.body.prepend(divFilter);
+  divFilter.appendChild(divPopup);
+  divPopup.appendChild(msgElem);
+
+  divFilter.addEventListener("click", () => {
+    inputElem.value = "";
+    robotsDisplay(robotFilter(inputElem.value));
+    divFilter.remove();
+  });
 };
 
 inputElem.addEventListener("input", () => {
-    robotsDisplay(robotFilter(inputElem.value));
-})
+  robotsDisplay(robotFilter(inputElem.value));
+  robotFilter(inputElem.value).length == 0 && popup("No robots found... (◡︵◡)");
+});
