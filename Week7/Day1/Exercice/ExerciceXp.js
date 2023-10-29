@@ -137,9 +137,8 @@ class Labrador extends Dog {
 
 // 1. Evaluate these (ie True or False)
 
-console.log([2] === [2]);
-console.log({} === {});
-    // 
+// console.log([2] === [2]);
+// console.log({} === {});
 
 // 2. What is, for each object below, the value of the property number and why?
     const object1 = { number: 5 };
