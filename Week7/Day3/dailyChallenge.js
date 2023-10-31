@@ -173,10 +173,14 @@ const toMorse = (morseJs) => {
 const joinWords = (morseTranslation) => {
   const div = document.createElement("div");
   morseTranslation.then((result) => {
-    text = result.reduce((acc, val) => acc + "\n" + val);
-    div.textContent = text;
+    text = result.reduce((acc, val) => acc + "<br/>" + val);
+    div.innerHTML = text;
+    div.style.fontSize = "32px";
     document.body.appendChild(div);
   });
 };
 
-joinWords(toMorse(toJs()).then());
+joinWords(toMorse(toJs()));
+
+// I didnt found how to chain the functions, since toMorse() is called from joinWords() parameters, and toJs() is called from toMorse() parameters
+// The problem is that every finctions return a different Promise
