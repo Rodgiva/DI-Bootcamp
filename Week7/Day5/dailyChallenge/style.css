@@ -14,21 +14,13 @@ body {
   margin-top: 25px;
 }
 
-/* #btn {
-  margin-top: 20px;
-  border: 3px solid white;
-  border-radius: 10px;
-  width: 180px;
-  height: 40px;
-  font-weight: bold;
-  font-size: 20px;
-  cursor: pointer;
-  background-color: rgb(42, 42, 42);
-  color: white;
-} */
-
 p {
   color: white;
   font-weight: bold;
   font-size: 30px;
+}
+
+#spinner {
+  font-size: 80px;
+  margin-top: 80px;
 }

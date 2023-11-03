@@ -10,17 +10,23 @@
 	<div class="wrapper">
 		<div class="container">
             <h1>Currency Converter</h1>
+            <i id="spinner" class="fa-solid fa-spinner"></i>
+
             <form id="form">
-                <label for="currencyFrom"></label>
-                <select name="currencyFrom" id=""></select>
-                <label for="currencyTo"></label>
-                <select name="currencyTo" id="">
-                    <!-- <option value="">a</option> -->
-                </select>
+                <label for="currencyFrom">From</label>
+                <select name="currencyFrom" id="currencyFrom"></select>
+                <label for="currencyTo">To</label>
+                <select name="currencyTo" id="currencyTo"></select>
+                <label for="currencyTo">Amount</label>
+                <input type="text" id="amount" value="1">
+                <button id="btn">Convert</button>
+                <p id="result"></p>
             </form>
+            
 		</div>
 	</div>
 
     <script src="script.js"></script>
+    <script src="https://kit.fontawesome.com/dcf5327a22.js" crossorigin="anonymous"></script>
 </body>
 </html>
