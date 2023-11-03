@@ -54,9 +54,5 @@ const searchGif = async (e) => {
 document.getElementById("btn").addEventListener("click", searchGif)
 
 document.getElementById("deleteAll").addEventListener("click", () => {
-    for (const element of container.children) {
-        console.log(element);
-        element.remove()
-    }
-    // I don't understand why every elements looped are not removed
+    container.innerHTML = ""
 })
