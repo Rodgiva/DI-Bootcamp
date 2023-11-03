@@ -18,11 +18,13 @@ const height = document.getElementById("height")
 const gender = document.getElementById("gender")
 const birthYear = document.getElementById("birth-year")
 const homeWorld = document.getElementById("home-world")
+const h1Error = document.getElementById("error")
 
 const h1 = document.getElementsByTagName("h1")
 const p = document.getElementsByTagName("p")
 
 spinner.style.display = "none"
+h1Error.style.display = "none"
 
 const spin = () => {
     let degSpinner = 0
@@ -32,8 +34,6 @@ const spin = () => {
     },500)
 }
 
-spin()
-
 const displayInfos = (data1, data2) => {
     spinner.style.display = "none"
     nameCharacter.textContent = data1.name
@@ -41,16 +41,21 @@ const displayInfos = (data1, data2) => {
     gender.textContent = `Gender: ${data1.gender}`
     birthYear.textContent = `Birth year: ${data1.birthYear}`
     homeWorld.textContent = `Home world: ${data2}`
-    console.log(data1);
-    console.log(data2);
 }
 
 const displayLoading = () => {
+    h1Error.style.display = "none"
     spinner.style.display = "block"
     h1[0].textContent = ""
     for (const i of p) {
         i.textContent = ""
     }
+}
+
+const error = (msg) => {
+    spinner.style.display = "none"
+    h1Error.style.display = "block"
+    h1Error.textContent = msg
 }
 
 const search = async (e) => {
@@ -79,7 +84,9 @@ const search = async (e) => {
     }
     catch (err) {
         console.log(err);
+        error(err)
     }
 }
 
+spin()
 btnSearch.addEventListener("click", search)

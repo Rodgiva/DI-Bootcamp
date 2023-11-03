@@ -72,3 +72,8 @@ p {
   font-weight: bold;
   font-size: 30px;
 }
+
+#error {
+    color: white;
+    margin-top: 100px;
+}
