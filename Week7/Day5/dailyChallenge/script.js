@@ -49,7 +49,7 @@ const displayResult = (res) => {
 }
 
 const getApiConverterDatas = async () => {
-    const url = "https://v6.exchangerate-api.com/v6/1fa8d93f110dc9edba3d4cf7/latest/USD"
+    const url = `https://v6.exchangerate-api.com/v6/${apiKey}/latest/USD`
 
     try {
         const res = await fetch(url)
