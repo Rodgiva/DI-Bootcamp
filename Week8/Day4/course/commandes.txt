@@ -1,0 +1,2 @@
+npm i knex pg
+npm i dotenv
