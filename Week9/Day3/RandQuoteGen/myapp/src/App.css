@@ -1,0 +1,15 @@
+.App {
+  text-align: center;
+  height: 100vh;
+}
+
+h1 {
+  margin: 0;
+}
+
+.container {
+  background-color: white;
+  border-radius: 10px;
+  width: 50%;
+  margin: auto;
+}
