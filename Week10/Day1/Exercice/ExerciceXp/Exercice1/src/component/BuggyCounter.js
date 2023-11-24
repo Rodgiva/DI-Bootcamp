@@ -1,20 +1,23 @@
 import React from "react";
 
 class BuggyCounter extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = { counter: 0 };
   }
 
   handleClick = () => {
     this.setState({ counter: this.state.counter + 1 });
+    // throw new Error("I crashed!");
   };
 
-  render() {
+  componentDidUpdate() {
     if (this.state.counter > 5) {
-      throw "I crashed!";
+      throw new Error("I crashed!");
     }
+  }
 
+  render() {
     return (
       <>
         <button onClick={this.handleClick}>Click</button>
