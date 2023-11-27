@@ -1,13 +1,15 @@
 import { useContext } from "react";
+import { TaskContext } from "./TaskProvider";
+
 const TaskList = () => {
   const { tasks, dispatch } = useContext(TaskContext);
 
   const handleCompleteTask = (id) => {
-    dispatch({ type: COMPLETE_TASK, id });
+    dispatch({ type: "COMPLETE_TASK", id });
   };
 
   const handleRemoveTask = (id) => {
-    dispatch({ type: REMOVE_TASK, id });
+    dispatch({ type: "REMOVE_TASK", id });
   };
 
   return (

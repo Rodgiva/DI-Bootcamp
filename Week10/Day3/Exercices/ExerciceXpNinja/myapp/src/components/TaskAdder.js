@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
+import { TaskContext } from "./TaskProvider";
 
-const TaskContext = createContext();
+// const TaskContext = createContext();
 
 const TaskAdder = () => {
   const { dispatch } = useContext(TaskContext);
@@ -8,7 +9,7 @@ const TaskAdder = () => {
 
   const handleAddTask = () => {
     if (taskText.trim() === "") return;
-    dispatch({ type: ADD_TASK, text: taskText });
+    dispatch({ type: "ADD_TASK", text: taskText });
     setTaskText("");
   };
 

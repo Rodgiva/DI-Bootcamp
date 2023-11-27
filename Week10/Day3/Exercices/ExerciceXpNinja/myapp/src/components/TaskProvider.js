@@ -1,6 +1,6 @@
 import { createContext, useReducer } from "react";
 
-const TaskContext = createContext();
+export const TaskContext = createContext();
 
 const ADD_TASK = "ADD_TASK";
 const COMPLETE_TASK = "COMPLETE_TASK";
