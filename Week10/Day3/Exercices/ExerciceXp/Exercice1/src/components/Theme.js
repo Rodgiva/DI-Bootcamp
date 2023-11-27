@@ -2,14 +2,17 @@ import { useContext } from "react";
 import { AppContext } from "../App";
 
 const Theme = () => {
-  const { themeColor, setThemeColor } = useContext(AppContext);
+  // const { themeColor, setThemeColor } = useContext(AppContext);
+  const context = useContext(AppContext);
   const handleSwitch = () => {
-    themeColor === "dark" ? setThemeColor("light") : setThemeColor("dark");
+    context.themeColor === "dark"
+      ? context.setThemeColor("light")
+      : context.setThemeColor("dark");
   };
   return (
     <>
       <button onClick={handleSwitch}>Switch</button>
-      <h1>{themeColor}</h1>
+      <h1>{context.themeColor}</h1>
     </>
   );
 };
