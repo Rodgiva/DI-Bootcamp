@@ -1,13 +1,14 @@
+import logo from "./logo.svg";
 import "./App.css";
-import Counter from "./components/Counter";
-import Posts from "./components/Posts";
+import Counter from "./features/counter/Counter";
+import PostsList from "./features/posts/PostsList";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <Counter />
-        <Posts />
+        <PostsList />
       </header>
     </div>
   );

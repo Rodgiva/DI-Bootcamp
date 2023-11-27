@@ -3,7 +3,7 @@ import { connect, useSelector, useDispatch } from "react-redux";
 import { increment } from "../redux/actions/counterActions.js";
 
 const Counter = (props) => {
-  console.log("props=>", props);
+  // console.log("props=>", props);
 //   const [counter, setCounter] = useState(0);
   const counter = useSelector(state => state.counterReducer.value)
   const dispatch = useDispatch()
