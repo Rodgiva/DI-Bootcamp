@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { add, mark, delall } from "../redux/actions/todosActions";
+import { add, mark, delall } from "../redux/actions/todosAction";
 import { Button } from "react-bootstrap";
 import { Card } from "react-bootstrap";
 

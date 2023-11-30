@@ -1,11 +1,11 @@
-import TodosList from "./components/TodosList";
 import "./App.css";
+import Tasks from "./components/Tasks";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <TodosList />
+        <Tasks />
       </header>
     </div>
   );

@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { todosReducer } from "./reducers/todosReducer";
+import { tasksReducer } from "./reducers/tasksReducer";
 
 export default configureStore({
   reducer: {
-    todosReducer,
+    tasksReducer,
   },
 });

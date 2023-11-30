@@ -7,6 +7,7 @@ export const todosReducer = (state = initialState, action) => {
     case "ADD":
       const aTodoToAdd = [...state.todoList];
       aTodoToAdd.push(action.payload);
+      console.log(state);
       return { ...state, todoList: aTodoToAdd };
     case "MARK":
       const id = action.payload.id;
