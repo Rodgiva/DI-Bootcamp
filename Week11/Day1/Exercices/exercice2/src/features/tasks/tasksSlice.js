@@ -9,11 +9,10 @@ export const tasksSlice = createSlice({
   initialState,
   reducers: {
     addTask: {
-      prepare(title, description, date) {
+      prepare(task, date) {
         return {
           payload: {
-            title,
-            description,
+            task,
             date,
           },
         };
@@ -21,36 +20,34 @@ export const tasksSlice = createSlice({
       reducer(state, action) {
         const newTask = {
           id: state.taskList.length + 1,
-          title: action.payload.title,
-          description: action.payload.description,
+          task: action.payload.task,
           date: action.payload.date,
         };
         state.taskList.push(newTask);
       },
     },
     editTask: {
-      prepare(id, title, description, date) {
+      prepare(id, task, date) {
         return {
           payload: {
             id,
-            title,
-            description,
+            task,
             date,
           },
         };
       },
       reducer(state, action) {
         const id = action.payload.id;
-        const title = action.payload.title;
-        const description = action.payload.description;
+        const task = action.payload.task;
         const date = action.payload.date;
 
         const index = state.taskList.findIndex((item) => item.id === id);
 
+        console.log(action.payload);
+
         state.taskList[index] = {
           id,
-          title,
-          description,
+          task,
           date,
         };
       },
@@ -60,10 +57,10 @@ export const tasksSlice = createSlice({
       const index = state.taskList.findIndex((item) => item.id === id);
       state.taskList.splice(index, 1);
     },
-  },
-  getTasksByDate: (state, action) => {
-    const date = action.payload;
-    return state.taskList.filter((item) => item.date === date);
+    getTasksByDate: (state, action) => {
+      const date = action.payload;
+      state.taskList.filter((item) => item.date === date);
+    },
   },
 });
 
